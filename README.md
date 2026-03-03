@@ -50,12 +50,59 @@ The MIDI file can be rendered to WAV using [FluidSynth](https://www.fluidsynth.o
 
 **Requirements:** FluidSynth must be installed on your system (`brew install fluidsynth` on macOS, `apt install fluidsynth` on Ubuntu).
 
-```bash
-# After building the MIDI:
-make abjad-wav
+If you already ran `make abjad` (or `make abjad-midi`), you can render the WAV via Make:
 
-# Or run the script directly with any MIDI file:
-./midi2wav.sh build/modus-operandi-abjad.midi build/modus-operandi-abjad.wav
+```bash
+make abjad-wav
+```
+
+You can also run the script directly on any MIDI file:
+
+```bash
+./midi2wav.sh <input.midi> [output.wav]
+```
+
+If the output path is omitted, it defaults to the input filename with a `.wav` extension. For example:
+
+```bash
+./midi2wav.sh build/modus-operandi-abjad.midi
+# produces build/modus-operandi-abjad.wav
+```
+
+### Playing audio from the command line
+
+Once you have a WAV file, you can play it directly from the terminal without a GUI player:
+
+**macOS** (built-in, no install needed):
+
+```bash
+afplay build/modus-operandi-abjad.wav
+```
+
+`afplay` also supports `-t <seconds>` to limit playback duration and `-r <rate>` to adjust playback speed.
+
+**Linux** (using `aplay` from ALSA, typically pre-installed):
+
+```bash
+aplay build/modus-operandi-abjad.wav
+```
+
+Alternatively, if you have PulseAudio or PipeWire:
+
+```bash
+paplay build/modus-operandi-abjad.wav
+```
+
+**Windows** (PowerShell, no install needed):
+
+```powershell
+(New-Object Media.SoundPlayer "build\modus-operandi-abjad.wav").PlaySync()
+```
+
+Or using the built-in `start` command to open the file in the default media player:
+
+```cmd
+start build\modus-operandi-abjad.wav
 ```
 
 ### Building from the LilyPond source directly
