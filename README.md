@@ -44,6 +44,20 @@ make abjad-pdf   # .ly + PDF
 make abjad-midi  # .ly + MIDI
 ```
 
+### Rendering audio from MIDI
+
+The MIDI file can be rendered to WAV using [FluidSynth](https://www.fluidsynth.org/) and the [Salamander Grand Piano](https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html) soundfont (Yamaha C5, 16 velocity layers). The included `midi2wav.sh` script handles downloading the soundfont (~296 MB) on first use and caching it in `~/.soundfonts/`.
+
+**Requirements:** FluidSynth must be installed on your system (`brew install fluidsynth` on macOS, `apt install fluidsynth` on Ubuntu).
+
+```bash
+# After building the MIDI:
+make abjad-wav
+
+# Or run the script directly with any MIDI file:
+./midi2wav.sh build/modus-operandi-abjad.midi build/modus-operandi-abjad.wav
+```
+
 ### Building from the LilyPond source directly
 
 If you have LilyPond installed but not Python/Abjad, you can compile the hand-written source or a released `.ly` file directly:

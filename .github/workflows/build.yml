@@ -34,6 +34,12 @@ jobs:
       - name: Build score (LilyPond + PDF + MIDI)
         run: make abjad
 
+      - name: Install FluidSynth
+        run: sudo apt-get update && sudo apt-get install -y fluidsynth
+
+      - name: Render MIDI to WAV
+        run: ./midi2wav.sh build/modus-operandi-abjad.midi build/modus-operandi-abjad.wav
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -42,6 +48,7 @@ jobs:
             build/modus-operandi-abjad.ly
             build/modus-operandi-abjad.pdf
             build/modus-operandi-abjad.midi
+            build/modus-operandi-abjad.wav
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/v')
@@ -53,4 +60,5 @@ jobs:
             --generate-notes \
             build/modus-operandi-abjad.pdf \
             build/modus-operandi-abjad.midi \
-            build/modus-operandi-abjad.ly
+            build/modus-operandi-abjad.ly \
+            build/modus-operandi-abjad.wav

@@ -10,7 +10,7 @@ MIDIS   := $(patsubst $(SRC_DIR)/%.ly,$(BUILD_DIR)/%.midi,$(SOURCES))
 
 ABJAD_CMD := $(PYTHON) -m modus_operandi_abjad
 
-.PHONY: all clean abjad abjad-ly abjad-pdf abjad-midi install
+.PHONY: all clean abjad abjad-ly abjad-pdf abjad-midi abjad-wav install
 
 all: $(PDFS)
 
@@ -37,6 +37,9 @@ abjad-pdf:
 
 abjad-midi:
 	$(ABJAD_CMD) -o $(BUILD_DIR) --midi
+
+abjad-wav:
+	./midi2wav.sh $(BUILD_DIR)/modus-operandi-abjad.midi $(BUILD_DIR)/modus-operandi-abjad.wav
 
 clean:
 	rm -rf $(BUILD_DIR)
