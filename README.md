@@ -42,6 +42,7 @@ This produces three files in `build/`:
 | `modus-operandi-abjad.ly` | Generated LilyPond source |
 | `modus-operandi-abjad.pdf` | Engraved score |
 | `modus-operandi-abjad.midi` | Combined MIDI (all three movements) |
+| `modus-operandi-abjad.wav` | Playable audio with Yamaha Grand Piano Sound Font |
 
 You can also build individual outputs:
 
