@@ -2,7 +2,7 @@
 
 **Composer:** George K. Thiruvathukal
 
-A monody for solo piano in three movements, each built on a different mode rooted on F. The piece explores the melodic character of the Dorian, Phrygian, and Lydian modes through contrasting tempi and textures while maintaining a single-voice (monophonic) melodic line in the right hand over simple intervallic accompaniment in the left hand.
+A monody for solo piano in three movements, each built on a different mode rooted on F. The *minimalist* piece explores the melodic character of the Dorian, Phrygian, and Lydian modes through contrasting tempi and textures while maintaining a single-voice (monophonic) melodic line in the right hand over simple intervallic accompaniment in the left hand.
 
 | Movement | Mode | Meter | Tempo |
 |----------|------|-------|-------|
@@ -12,12 +12,17 @@ A monody for solo piano in three movements, each built on a different mode roote
 
 Each movement is 16 bars long. The right hand carries the melodic line in quarter notes (I), eighth notes with ottava (II), and quarter notes with ottava (III). The left hand provides a slower-moving accompaniment in half notes (I, III) or dotted quarters (II), outlining intervals of fourths and fifths rooted on F.
 
-## AI Disclosure
+## AI Disclosure with Commentary
 
 The compositional ideas in this work are my own.
-After using WYSIWYG tools, I decided to reexamine Abjad, which I have used for other works, including my Jazz Scales book at https://github.com/gkthiruvathukal/jazz-patterns.
-I have used LLMs to become more proficient with the Abjad API.
+
+After using WYSIWYG tools for notating my composition, I decided to reexamine Abjad (a Python framework for composing music). I have used Abjad for other works, including my Jazz Scales "book" at https://github.com/gkthiruvathukal/jazz-patterns.
+
+I have used LLMs to become more proficient with the Abjad API. It is both amazing and astonishing what is possible when one knows what they are doing in computer science and music at the same time!
+
 This API is powerful but complex and greatly benefits from LLMs to learn many of its advanced (sometimes cryptic!) features.
+Although I have written Abjad/Python code by hand, it is much better to have assistance from the LLM so I can focus on the "good stuff" in CS and Music.
+
 
 ## Building
 
