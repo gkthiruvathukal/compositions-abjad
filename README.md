@@ -33,6 +33,7 @@ The score is generated programmatically using [Abjad](https://abjad.github.io/),
 ```bash
 pip install -e .
 make abjad
+make abjad-wav
 ```
 
 This produces three files in `build/`:
