@@ -12,6 +12,13 @@ A monody for solo piano in three movements, each built on a different mode roote
 
 Each movement is 16 bars long. The right hand carries the melodic line in quarter notes (I), eighth notes with ottava (II), and quarter notes with ottava (III). The left hand provides a slower-moving accompaniment in half notes (I, III) or dotted quarters (II), outlining intervals of fourths and fifths rooted on F.
 
+## AI Disclosure
+
+The compositional ideas in this work are my own.
+After using WYSIWYG tools, I decided to reexamine Abjad, which I have used for other works, including my Jazz Scales book at https://github.com/gkthiruvathukal/jazz-patterns.
+I have used LLMs to become more proficient with the Abjad API.
+This API is powerful but complex and greatly benefits from LLMs to learn many of its advanced (sometimes cryptic!) features.
+
 ## Building
 
 The score is generated programmatically using [Abjad](https://abjad.github.io/), a Python library for formalized score control, and compiled to PDF and MIDI with [LilyPond](https://lilypond.org/).
@@ -127,3 +134,4 @@ Every push to `main` and every pull request builds the score via GitHub Actions.
 git tag v0.2
 git push --tags
 ```
+
