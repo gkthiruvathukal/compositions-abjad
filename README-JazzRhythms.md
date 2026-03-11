@@ -44,6 +44,12 @@ python -m jazz_rhythm -o build --pdf
 python -m jazz_rhythm -o build --midi
 ```
 
+## Preview
+
+[![Jazz Rhythms score preview](images/jazz-rhythm-demo.png)](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf)
+
+[Open the latest PDF score](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf)
+
 ## CI/CD
 
 Jazz Rhythmic Patterns is built by the repository's shared GitHub Actions workflow. Tagged releases attach:
