@@ -7,6 +7,7 @@ from . import rhythms
 TITLE = "Jazz Rhythmic Patterns using Abjad Python"
 COMPOSER = "George K. Thiruvathukal"
 
+
 def _make_staff(name, markup, rhythm_maker, measures=4):
     """Build one rhythmic staff showing repeated instances of a pattern."""
     staff = abjad.Staff(lilypond_type="RhythmicStaff", name=name)
@@ -17,6 +18,20 @@ def _make_staff(name, markup, rhythm_maker, measures=4):
     if leaves:
         abjad.attach(abjad.TimeSignature((4, 4)), leaves[0])
         abjad.attach(abjad.Markup(rf'\markup "{markup}"'), leaves[0], direction=abjad.UP)
+    return staff
+
+
+def _make_lyric_staff(name, markup, rhythm_maker, lyric_text, measures=4):
+    """Build one rhythmic staff with a lyric line aligned to its notes."""
+    staff = _make_staff(name, markup, rhythm_maker, measures=measures)
+    lyric_line = " ".join([lyric_text] * measures)
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            rf"\addlyrics {{ \override LyricText.font-size = #-1 {lyric_line} }}",
+            site="after",
+        ),
+        staff,
+    )
     return staff
 
 
@@ -46,6 +61,14 @@ def build_lilypond_file():
             rhythms.syncopated,
         )
     )
+    score.append(
+        _make_lyric_staff(
+            "Swing Two Four Staff",
+            "Swing on 2 and 4",
+            rhythms.swing_two_four,
+            "doodle LA doodle LA",
+        )
+    )
 
     header_block = abjad.Block(name="header")
     header_block.items.append(rf'title = "{TITLE}"')
@@ -54,6 +77,16 @@ def build_lilypond_file():
 
     layout_block = abjad.Block(name="layout")
     layout_block.items.append(r"indent = 2.0\cm")
+    layout_block.items.append(
+        r"""
+        \context {
+            \Score
+            \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #14
+            \override VerticalAxisGroup.default-staff-staff-spacing.minimum-distance = #10
+            \override VerticalAxisGroup.default-staff-staff-spacing.padding = #3
+        }
+        """
+    )
 
     midi_block = abjad.Block(name="midi")
 

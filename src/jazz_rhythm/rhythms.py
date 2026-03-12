@@ -8,7 +8,8 @@ def charleston():
     return [
         abjad.Note("c'4."),
         abjad.Note("c'8"),
-        abjad.Rest("r2"),
+        abjad.Rest("r4"),
+        abjad.Rest("r4"),
     ]
 
 
@@ -26,7 +27,9 @@ def charleston_extended():
 def anticipation():
     """Return a one-measure anticipation rhythm."""
     return [
-        abjad.Rest("r2."),
+        abjad.Rest("r4"),
+        abjad.Rest("r4"),
+        abjad.Rest("r4"),
         abjad.Rest("r8"),
         abjad.Note("c'8"),
     ]
@@ -49,5 +52,16 @@ def syncopated():
         abjad.Note("c'8"),
         abjad.Rest("r8"),
         abjad.Note("c'8"),
-        abjad.Rest("r2"),
+        abjad.Rest("r4"),
+        abjad.Rest("r4"),
+    ]
+
+
+def swing_two_four():
+    """Return a swung one-measure pattern on beats 2 and 4."""
+    return [
+        abjad.Rest("r4"),
+        abjad.Tuplet("3:2", [abjad.Note("c'4"), abjad.Note("c'8")]),
+        abjad.Rest("r4"),
+        abjad.Tuplet("3:2", [abjad.Note("c'4"), abjad.Note("c'8")]),
     ]
