@@ -47,6 +47,24 @@ Both projects require Python 3.10+ and LilyPond 2.24+.
 
 ## Standard Python Workflows
 
+For a full local build with automatic `.venv` creation, use:
+
+```bash
+./build.sh
+```
+
+This bootstraps `.venv`, installs the Python dependencies it needs, builds both
+projects into `build/`, and renders the Modus Operandi WAV if `fluidsynth` is
+installed.
+
+You can override the output directory:
+
+```bash
+./build.sh out
+```
+
+If you prefer running the project entry points directly, use:
+
 Run the CLIs directly as modules:
 
 ```bash
