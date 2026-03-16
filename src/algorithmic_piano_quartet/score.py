@@ -190,6 +190,21 @@ def _apply_ending(score: abjad.Score, piece: Piece) -> None:
     abjad.attach(abjad.BarLine("|."), final_leaf)
 
 
+def _quote_markup_text(text: str) -> str:
+    return text.replace("\\", "\\\\").replace('"', '\\"')
+
+
+def _build_generation_note_markup(piece: Piece) -> abjad.Markup | None:
+    if not piece.generation_note_lines:
+        return None
+
+    lines = " ".join(
+        rf'\line {{ "{_quote_markup_text(line)}" }}'
+        for line in piece.generation_note_lines
+    )
+    return abjad.Markup(rf'\markup \column {{ {lines} }}')
+
+
 def build_lilypond_file(piece: Piece) -> abjad.LilyPondFile:
     voice_lookup = {voice.staff_id: voice for voice in piece.voices}
 
@@ -252,4 +267,9 @@ def build_lilypond_file(piece: Piece) -> abjad.LilyPondFile:
     score_block.items.append(layout_block)
     score_block.items.append(midi_block)
 
-    return abjad.LilyPondFile(items=[header_block, score_block])
+    items: list = [header_block, score_block]
+    generation_note_markup = _build_generation_note_markup(piece)
+    if generation_note_markup is not None:
+        items.append(generation_note_markup)
+
+    return abjad.LilyPondFile(items=items)

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 import random
 
 from .config import PartConfig, ProjectConfig
@@ -35,6 +36,7 @@ class Piece:
     measure_quanta: int
     measures: int
     voices: tuple[VoiceMaterial, ...]
+    generation_note_lines: tuple[str, ...]
 
 
 class OccupancyTracker:
@@ -142,6 +144,52 @@ def _merge_adjacent_rests(events: list[Event], measure_quanta: int) -> list[Even
         else:
             merged.append(event)
     return merged
+
+
+def _pitch_class_names(pitch_classes: tuple[int, ...]) -> str:
+    names = {
+        0: "C",
+        1: "Db",
+        2: "D",
+        3: "Eb",
+        4: "E",
+        5: "F",
+        6: "Gb",
+        7: "G",
+        8: "Ab",
+        9: "A",
+        10: "Bb",
+        11: "B",
+    }
+    return ", ".join(names[value] for value in pitch_classes)
+
+
+def _soundfont_name(path: str | None) -> str | None:
+    if not path:
+        return None
+    return Path(path).expanduser().name
+
+
+def _build_generation_note_lines(config: ProjectConfig) -> tuple[str, ...]:
+    lines = [
+        "Compositional Parameters:",
+        f"Measures: {config.generation.measures}",
+        f"Tempo: {config.generation.tempo_bpm} BPM",
+        f"Seed: {config.generation.seed}",
+        f"Pitch classes: {_pitch_class_names(config.pitch_classes)}",
+        "Instrumentation: piano, violin, viola, cello",
+    ]
+
+    piano_soundfont = _soundfont_name(config.render.piano_soundfont)
+    strings_soundfont = _soundfont_name(config.render.strings_soundfont)
+    if piano_soundfont and strings_soundfont:
+        lines.append(
+            f"Render: piano={piano_soundfont}; strings={strings_soundfont}"
+        )
+    elif config.render.soundfont:
+        lines.append(f"Render: {_soundfont_name(config.render.soundfont)}")
+
+    return tuple(lines)
 
 
 def _generate_voice(
@@ -284,4 +332,5 @@ def compose_piece(config: ProjectConfig) -> Piece:
         measure_quanta=config.generation.measure_quanta,
         measures=config.generation.measures,
         voices=tuple(voices),
+        generation_note_lines=_build_generation_note_lines(config),
     )
