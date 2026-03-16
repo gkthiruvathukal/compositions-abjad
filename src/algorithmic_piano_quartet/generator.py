@@ -1,4 +1,4 @@
-"""Generate a short atonal piano quartet prototype."""
+"""Generate a short algorithmic piano quartet prototype."""
 
 from __future__ import annotations
 

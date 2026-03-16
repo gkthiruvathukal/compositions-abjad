@@ -1,4 +1,4 @@
-"""Configuration loading for the atonal piano quartet prototype."""
+"""Configuration loading for the algorithmic piano quartet prototype."""
 
 from __future__ import annotations
 
@@ -46,6 +46,8 @@ class GenerationConfig:
 @dataclass(frozen=True)
 class RenderConfig:
     soundfont: str | None
+    piano_soundfont: str | None
+    strings_soundfont: str | None
     sample_rate: int
 
 
@@ -186,7 +188,7 @@ def load_config(path: str | Path) -> ProjectConfig:
         title=data.get("title", "Untitled Piano Quartet"),
         composer=data.get("composer", "Unknown Composer"),
         output=OutputConfig(
-            basename=output_data.get("basename", "atonal-piano-quartet"),
+            basename=output_data.get("basename", "algorithmic-piano-quartet"),
             label=output_data.get("label"),
             include_measures=output_data.get("include_measures", True),
             include_tempo=output_data.get("include_tempo", True),
@@ -198,6 +200,8 @@ def load_config(path: str | Path) -> ProjectConfig:
         generation=generation,
         render=RenderConfig(
             soundfont=render_data.get("soundfont"),
+            piano_soundfont=render_data.get("piano_soundfont"),
+            strings_soundfont=render_data.get("strings_soundfont"),
             sample_rate=render_data.get("sample_rate", 44100),
         ),
         parts=tuple(parts),

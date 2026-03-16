@@ -1,9 +1,9 @@
-title = "Atonal Piano Quartet No. 1"
+title = "Algo Rhythms Quartet No. 1"
 composer = "George K. Thiruvathukal"
 
 [output]
-basename = "atonal-piano-quartet"
-label = "study"
+basename = "algo-rhythms-quartet-no-1"
+label = ""
 include_measures = true
 include_tempo = true
 include_seed = true
@@ -11,7 +11,11 @@ include_timestamp = true
 timestamp_format = "%Y-%m-%d@%H-%M"
 
 [render]
-soundfont = "~/.soundfonts/SalamanderGrandPiano-V3+20200602.sf2"
+# Dual-soundfont render setup:
+#   piano   -> ~/.soundfonts/SalamanderGrandPiano-V3+20200602.sf2
+#   strings -> ~/.soundfonts/AegeanSymphonicOrchestra.sf2
+piano_soundfont = "~/.soundfonts/SalamanderGrandPiano-V3+20200602.sf2"
+strings_soundfont = "~/.soundfonts/AegeanSymphonicOrchestra.sf2"
 sample_rate = 44100
 
 [generation]

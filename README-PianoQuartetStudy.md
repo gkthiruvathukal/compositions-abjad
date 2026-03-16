@@ -33,15 +33,15 @@ Although this study is part of the broader path toward an atonal composition pro
 ## Files
 
 - **Config:** `piano-quartet.toml`
-- **Source:** `src/atonal_piano_quartet/`
-- **CLI:** `python -m atonal_piano_quartet`
+- **Source:** `src/algorithmic_piano_quartet/`
+- **CLI:** `python -m algorithmic_piano_quartet`
 
 ## Building
 
 From the repository root:
 
 ```bash
-PYTHONPATH=src ./.venv/bin/python -m atonal_piano_quartet -c piano-quartet.toml -o build --pdf --wav
+PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf --wav
 ```
 
 This produces uniquely named output files in `build/`, including:
@@ -57,18 +57,29 @@ The filename stem is built from the configured base name plus selected generatio
 
 WAV rendering is done from Python through FluidSynth using the soundfont configured in `piano-quartet.toml`.
 
-If the selected soundfont does not contain violin, viola, and cello patches, those parts will be substituted during playback. The current local Salamander piano soundfont is sufficient to test the render path, but it does not provide true quartet timbres.
+The current recommended setup is a dual-soundfont render:
+
+```bash
+~/.soundfonts/SalamanderGrandPiano-V3+20200602.sf2
+~/.soundfonts/AegeanSymphonicOrchestra.sf2
+```
+
+By default, the quartet render uses Salamander for piano and Aegean for violin, viola, and cello, then mixes the two WAV layers into one final file with `ffmpeg`.
+
+If either file is missing, the quartet CLI will download and cache it automatically on first WAV render.
+
+If the selected soundfont does not contain violin, viola, and cello patches, those parts will be substituted during playback. A piano-only soundfont such as Salamander is fine for render-path testing, but it does not provide true quartet timbres.
 
 ## Typical Commands
 
 Render notation only:
 
 ```bash
-PYTHONPATH=src ./.venv/bin/python -m atonal_piano_quartet -c piano-quartet.toml -o build --pdf
+PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf
 ```
 
 Override measures and tempo from the command line:
 
 ```bash
-PYTHONPATH=src ./.venv/bin/python -m atonal_piano_quartet -c piano-quartet.toml -o build --pdf --wav --measures 24 --tempo 96
+PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf --wav --measures 24 --tempo 96
 ```

@@ -35,7 +35,7 @@ jobs:
         run: python -m modus_operandi_abjad -o build
 
       - name: Install FluidSynth
-        run: sudo apt-get update && sudo apt-get install -y fluidsynth
+        run: sudo apt-get update && sudo apt-get install -y fluidsynth ffmpeg
 
       - name: Render Modus Operandi WAV
         run: ./midi2wav.sh build/modus-operandi-abjad.midi build/modus-operandi-abjad.wav
@@ -102,27 +102,21 @@ jobs:
       - name: Install package
         run: pip install -e .
 
-      - name: Install FluidSynth
-        run: sudo apt-get update && sudo apt-get install -y fluidsynth
+      - name: Install audio tools
+        run: sudo apt-get update && sudo apt-get install -y fluidsynth ffmpeg
 
       - name: Build Piano Quartet Study outputs
-        run: python -m atonal_piano_quartet -c piano-quartet.toml -o build --pdf --midi
-
-      - name: Render Piano Quartet Study WAV
-        run: |
-          midi_file=$(find build -maxdepth 1 -type f -name 'atonal-piano-quartet*.midi' | head -n 1)
-          wav_file="${midi_file%.midi}.wav"
-          ./midi2wav.sh "$midi_file" "$wav_file"
+        run: python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf --wav
 
       - name: Upload Piano Quartet Study artifacts
         uses: actions/upload-artifact@v4
         with:
           name: piano-quartet-study
           path: |
-            build/atonal-piano-quartet*.ly
-            build/atonal-piano-quartet*.pdf
-            build/atonal-piano-quartet*.midi
-            build/atonal-piano-quartet*.wav
+            build/algo-rhythms-quartet-no-1*.ly
+            build/algo-rhythms-quartet-no-1*.pdf
+            build/algo-rhythms-quartet-no-1*.midi
+            build/algo-rhythms-quartet-no-1*.wav
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -166,7 +160,7 @@ jobs:
             release/jazz-rhythms/jazz-rhythms.pdf \
             release/jazz-rhythms/jazz-rhythms.midi \
             release/jazz-rhythms/jazz-rhythms.ly \
-            release/piano-quartet-study/atonal-piano-quartet*.pdf \
-            release/piano-quartet-study/atonal-piano-quartet*.midi \
-            release/piano-quartet-study/atonal-piano-quartet*.ly \
-            release/piano-quartet-study/atonal-piano-quartet*.wav
+            release/piano-quartet-study/algo-rhythms-quartet-no-1*.pdf \
+            release/piano-quartet-study/algo-rhythms-quartet-no-1*.midi \
+            release/piano-quartet-study/algo-rhythms-quartet-no-1*.ly \
+            release/piano-quartet-study/algo-rhythms-quartet-no-1*.wav

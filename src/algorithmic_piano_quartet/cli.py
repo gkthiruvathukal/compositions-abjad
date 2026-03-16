@@ -1,4 +1,4 @@
-"""CLI for building the atonal piano quartet prototype."""
+"""CLI for building the algorithmic piano quartet prototype."""
 
 from __future__ import annotations
 
@@ -9,17 +9,20 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 import abjad
+import mido
 
 from .config import load_config
 from .generator import compose_piece
 from .score import build_lilypond_file
+from .soundfonts import ensure_soundfont
 
 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(
-        description="Generate a short atonal piano quartet study from TOML config.",
+        description="Generate an algorithmic piano quartet study from TOML config.",
     )
     parser.add_argument(
         "-c",
@@ -116,9 +119,7 @@ def render_wav(
     soundfont_path: str,
     sample_rate: int,
 ) -> None:
-    soundfont = Path(soundfont_path).expanduser()
-    if not soundfont.exists():
-        raise FileNotFoundError(f"Soundfont not found: {soundfont}")
+    soundfont = ensure_soundfont(soundfont_path)
     cmd = [
         "fluidsynth",
         "-ni",
@@ -137,6 +138,88 @@ def render_wav(
     if result.stderr:
         print(result.stderr, end="")
     print(f"Wrote {wav_path}")
+
+
+def render_layered_wav(
+    midi_path: str,
+    wav_path: str,
+    piano_soundfont_path: str,
+    strings_soundfont_path: str,
+    sample_rate: int,
+) -> None:
+    midi = mido.MidiFile(midi_path)
+    piano_channels = _channels_for_prefixes(midi, {"piano_rh", "piano_lh"})
+    strings_channels = _channels_for_prefixes(midi, {"violin", "viola", "cello"})
+
+    if not piano_channels or not strings_channels:
+        raise ValueError("Could not detect distinct piano and string MIDI channels for layered rendering.")
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+        piano_midi = Path(temp_dir) / "quartet-piano.midi"
+        strings_midi = Path(temp_dir) / "quartet-strings.midi"
+        piano_wav = Path(temp_dir) / "quartet-piano.wav"
+        strings_wav = Path(temp_dir) / "quartet-strings.wav"
+
+        _write_filtered_midi(midi, piano_channels, piano_midi)
+        _write_filtered_midi(midi, strings_channels, strings_midi)
+
+        render_wav(str(piano_midi), str(piano_wav), piano_soundfont_path, sample_rate)
+        render_wav(str(strings_midi), str(strings_wav), strings_soundfont_path, sample_rate)
+        mix_wavs(str(piano_wav), str(strings_wav), wav_path)
+
+
+def _channels_for_prefixes(midi: mido.MidiFile, prefixes: set[str]) -> set[int]:
+    channels: set[int] = set()
+    for track in midi.tracks:
+        track_name = track.name.split(":", 1)[0] if getattr(track, "name", "") else ""
+        if track_name not in prefixes:
+            continue
+        for msg in track:
+            if hasattr(msg, "channel"):
+                channels.add(msg.channel)
+    return channels
+
+
+def _write_filtered_midi(midi: mido.MidiFile, channels: set[int], output_path: Path) -> None:
+    filtered = mido.MidiFile(type=midi.type, ticks_per_beat=midi.ticks_per_beat)
+    for track in midi.tracks:
+        new_track = mido.MidiTrack()
+        pending_time = 0
+        for msg in track:
+            msg_time = pending_time + msg.time
+            if hasattr(msg, "channel") and msg.channel not in channels:
+                pending_time = msg_time
+                continue
+            pending_time = 0
+            new_track.append(msg.copy(time=msg_time))
+        if not new_track or new_track[-1].type != "end_of_track":
+            new_track.append(mido.MetaMessage("end_of_track", time=pending_time))
+        filtered.tracks.append(new_track)
+    filtered.save(output_path)
+
+
+def mix_wavs(piano_wav_path: str, strings_wav_path: str, output_path: str) -> None:
+    cmd = [
+        "ffmpeg",
+        "-y",
+        "-i",
+        piano_wav_path,
+        "-i",
+        strings_wav_path,
+        "-filter_complex",
+        "amix=inputs=2:duration=longest:normalize=0",
+        "-c:a",
+        "pcm_s16le",
+        output_path,
+    ]
+    print(f"Running: {' '.join(cmd)}")
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(result.stderr, file=sys.stderr)
+        sys.exit(result.returncode)
+    if result.stderr:
+        print(result.stderr, end="")
+    print(f"Wrote {output_path}")
 
 
 def main(argv=None):
@@ -168,17 +251,35 @@ def main(argv=None):
         print("Done (--ly only, skipping LilyPond compilation).")
 
     if args.wav:
-        soundfont = args.soundfont or config.render.soundfont
-        if not soundfont:
-            raise ValueError("WAV rendering requires --soundfont or [render].soundfont in config.")
         midi_path = os.path.join(args.output_dir, f"{stem}.midi")
         wav_path = os.path.join(args.output_dir, f"{stem}.wav")
-        render_wav(
-            midi_path=midi_path,
-            wav_path=wav_path,
-            soundfont_path=soundfont,
-            sample_rate=config.render.sample_rate,
-        )
+        if args.soundfont:
+            render_wav(
+                midi_path=midi_path,
+                wav_path=wav_path,
+                soundfont_path=args.soundfont,
+                sample_rate=config.render.sample_rate,
+            )
+        elif config.render.piano_soundfont and config.render.strings_soundfont:
+            render_layered_wav(
+                midi_path=midi_path,
+                wav_path=wav_path,
+                piano_soundfont_path=config.render.piano_soundfont,
+                strings_soundfont_path=config.render.strings_soundfont,
+                sample_rate=config.render.sample_rate,
+            )
+        elif config.render.soundfont:
+            render_wav(
+                midi_path=midi_path,
+                wav_path=wav_path,
+                soundfont_path=config.render.soundfont,
+                sample_rate=config.render.sample_rate,
+            )
+        else:
+            raise ValueError(
+                "WAV rendering requires --soundfont, [render].soundfont, "
+                "or both [render].piano_soundfont and [render].strings_soundfont."
+            )
 
 
 if __name__ == "__main__":

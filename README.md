@@ -2,7 +2,7 @@
 
 This repository contains programmatic music composition experiments and finished works using [Abjad](https://abjad.github.io/) and [LilyPond](https://lilypond.org/).
 
-The repository uses normal Python entry points instead of relying on a `Makefile`. Both projects expose module entry points (`python -m ...`) and console scripts after installation.
+The repository uses normal Python entry points instead of relying on a `Makefile`. Each package exposes a module entry point (`python -m ...`) and, after installation, a console script.
 
 ## Projects
 
@@ -24,12 +24,19 @@ A collection of generated jazz comping rhythms (Charleston, anticipation, syncop
 
 A generated **tonal** chamber study for piano, violin, viola, and cello. This is an exploratory step toward a future atonal composition system, but this study itself is tonal and should be described that way.
 
-- **Source:** `src/atonal_piano_quartet/`
-- **CLI:** `python -m atonal_piano_quartet -c piano-quartet.toml -o build`
+- **Source:** `src/algorithmic_piano_quartet/`
+- **CLI:** `python -m algorithmic_piano_quartet -c piano-quartet.toml -o build`
+
+### 4. [Algorithmic](README-Algorithmic.md)
+
+A placeholder scaffold for a future algorithmic composition package. It currently exists to keep the package, CLI, and score-generation path wired up while the musical material is still pending.
+
+- **Source:** `src/algorithmic/`
+- **CLI:** `python -m algorithmic -o build`
 
 ## Setup
 
-Both projects require Python 3.10+ and LilyPond 2.24+.
+All projects require Python 3.10+ and LilyPond 2.24+.
 
 1.  **Install dependencies:**
 
@@ -37,11 +44,13 @@ Both projects require Python 3.10+ and LilyPond 2.24+.
     pip install -e .
     ```
 
-    This installs two console scripts:
+    This installs four console scripts:
 
     ```bash
     modus-operandi-abjad
     jazz-rhythms
+    algorithmic-piano-quartet
+    algorithmic
     ```
 
 2.  **Install LilyPond:**
@@ -60,9 +69,7 @@ For a full local build with automatic `.venv` creation, use:
 ./build.sh
 ```
 
-This bootstraps `.venv`, installs the Python dependencies it needs, builds both
-projects into `build/`, and renders the Modus Operandi WAV if `fluidsynth` is
-installed.
+This bootstraps `.venv`, installs the project in editable mode, builds the current score packages into `build/`, renders the Modus Operandi WAV if `fluidsynth` is installed, and renders the piano quartet WAV when FluidSynth is available. The quartet render path automatically caches Salamander for piano, Aegean for strings, and mixes the layers with `ffmpeg`.
 
 You can override the output directory:
 
@@ -77,6 +84,8 @@ Run the CLIs directly as modules:
 ```bash
 python -m modus_operandi_abjad -o build
 python -m jazz_rhythm -o build
+python -m algorithmic_piano_quartet -c piano-quartet.toml -o build
+python -m algorithmic -o build
 ```
 
 Or use the installed console scripts:
@@ -84,6 +93,8 @@ Or use the installed console scripts:
 ```bash
 modus-operandi-abjad -o build
 jazz-rhythms -o build
+algorithmic-piano-quartet -c piano-quartet.toml -o build
+algorithmic -o build
 ```
 
 If you want a wheel or source distribution, use the standard Python build tool:
@@ -94,8 +105,10 @@ python -m build
 
 ## CI/CD
 
-GitHub Actions uses a single workflow file, [build.yml](.github/workflows/build.yml), to build both projects.
+GitHub Actions uses a single workflow file, [build.yml](.github/workflows/build.yml), to build the repository artifacts.
 
 - `modus_operandi_abjad` produces `.ly`, `.pdf`, `.midi`, and `.wav`
 - `jazz_rhythm` produces `.ly`, `.pdf`, and `.midi`
-- pushing a version tag creates one GitHub release containing assets from both projects
+- `algorithmic_piano_quartet` produces uniquely named `.ly`, `.pdf`, `.midi`, and `.wav` when FluidSynth is available
+- `algorithmic` currently produces placeholder `.ly`, `.pdf`, and `.midi`
+- pushing a version tag creates one GitHub release containing assets from the built projects
