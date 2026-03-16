@@ -9,7 +9,26 @@ This project is a generated **tonal** piano quartet study for:
 - viola
 - cello
 
-It sits in the repository as a practical stepping stone toward a larger atonal composition system, but the study itself should not be described as atonal. The tonal focus is deliberate: it provides a controlled way to verify that the core building blocks are working before moving to atonal composition. The current generator focuses on constrained rhythmic generation, bounded melodic motion, range-aware writing, and score/audio output workflows.
+The current piece is titled **Algo Rhythms Quartet No. 1**. The title reflects the basic idea of the piece. Rhythm is central, and the music is generated under clear rules for range, motion, and density.
+
+## Musical Idea
+
+This piece is a proof of concept for a future planned work. That later work is intended to support a broader set of atonal approaches and a wider range of instrumentation. This quartet is an earlier stage in that process.
+
+For now, the piece stays tonal on purpose. The goal is to test the basic musical and technical ideas first. Those ideas include:
+
+- rhythm is treated as a primary structural force
+- the ensemble writing is constrained enough to remain intelligible
+- melodic motion is limited so that line and register stay coherent
+- harmonic language remains restrained so the listener can hear the rhythmic design clearly
+
+The point is not to present the final atonal system yet. The point is to confirm that the current method can produce material that is clear, playable, and worth developing further.
+
+## Compositional Approach
+
+The piano, violin, viola, and cello are used as distinct parts with different roles. The strings carry much of the line and sustain. The piano helps with attack, spacing, and support. The system avoids large leaps and excessive density so that the material stays readable and playable.
+
+The title **Quartet No. 1** is also intentional. It marks this as a first entry in a larger line of work rather than as a finished endpoint. The planned direction is toward a more general algorithmic composition system that can handle different atonal options, different ensembles, and more developed formal ideas.
 
 ## Current Scope
 
@@ -28,7 +47,7 @@ The study is built from a TOML configuration file and rendered with Abjad and Li
 
 ## Tonal Status
 
-Although this study is part of the broader path toward an atonal composition project, the present material is tonal in character and should be treated as an exploratory chamber-writing study rather than as the atonal symphonic work itself. The reason for keeping it tonal at this stage is to validate the underlying machinery first: instrumentation, rhythmic constraints, range handling, voice-leading controls, score generation, and audio rendering all need to be reliable before the project moves into atonal language.
+Although this study belongs to a larger atonal project, the present material is tonal. That is a deliberate choice. It allows the current system to be tested in a simpler setting before moving to a more general atonal design. The proof-of-concept stage is focused on rhythm, range handling, ensemble spacing, score generation, and audio rendering. Broader atonal methods and instrumentation come later.
 
 ## Files
 
@@ -57,14 +76,19 @@ The filename stem is built from the configured base name plus selected generatio
 
 WAV rendering is done from Python through FluidSynth using the soundfont configured in `piano-quartet.toml`.
 
-The current recommended setup is a dual-soundfont render:
+The current final production setup uses two soundfonts:
 
 ```bash
 ~/.soundfonts/SalamanderGrandPiano-V3+20200602.sf2
 ~/.soundfonts/AegeanSymphonicOrchestra.sf2
 ```
 
-By default, the quartet render uses Salamander for piano and Aegean for violin, viola, and cello, then mixes the two WAV layers into one final file with `ffmpeg`.
+The production render uses:
+
+- **Salamander Grand Piano** for the piano part
+- **Aegean Symphonic Orchestra** for violin, viola, and cello
+
+The render path creates a piano WAV and a strings WAV separately, then combines them into one final file with `ffmpeg`. This is the current preferred production method for the quartet because it gives a better result than trying to render all parts from a single soundfont.
 
 If either file is missing, the quartet CLI will download and cache it automatically on first WAV render.
 
