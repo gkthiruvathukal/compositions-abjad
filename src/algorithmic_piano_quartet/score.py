@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import abjad
+from fractions import Fraction
 
 from .generator import Event, Piece, VoiceMaterial
 
@@ -120,6 +121,75 @@ def _voice_to_staff(voice_material: VoiceMaterial, piece: Piece) -> abjad.Staff:
     return staff
 
 
+def _pitched_leaves(component) -> list:
+    return [
+        leaf
+        for leaf in abjad.select.leaves(component)
+        if isinstance(leaf, (abjad.Note, abjad.Chord))
+    ]
+
+
+def _apply_staff_dynamics(staff: abjad.Staff, piece: Piece, opening: str) -> None:
+    pitched = _pitched_leaves(staff)
+    if not pitched:
+        return
+
+    first_leaf = pitched[0]
+    abjad.attach(abjad.Dynamic(opening), first_leaf)
+
+    halfway_measure_index = max(piece.measures // 2, 1)
+    halfway_offset = abjad.Offset(Fraction(halfway_measure_index * piece.measure_quanta, 16))
+    later_pitched = [
+        leaf for leaf in pitched if abjad.get.timespan(leaf).start_offset >= halfway_offset
+    ]
+    if later_pitched:
+        abjad.attach(abjad.Dynamic("mf"), later_pitched[0])
+
+
+def _apply_dynamics(
+    violin_staff: abjad.Staff,
+    viola_staff: abjad.Staff,
+    cello_staff: abjad.Staff,
+    piano_rh_staff: abjad.Staff,
+    piano_lh_staff: abjad.Staff,
+    piece: Piece,
+) -> None:
+    _apply_staff_dynamics(violin_staff, piece, "mp")
+    _apply_staff_dynamics(viola_staff, piece, "mp")
+    _apply_staff_dynamics(cello_staff, piece, "p")
+    _apply_staff_dynamics(piano_rh_staff, piece, "mp")
+    _apply_staff_dynamics(piano_lh_staff, piece, "p")
+
+
+def _apply_ending(score: abjad.Score, piece: Piece) -> None:
+    all_pitched = _pitched_leaves(score)
+    if not all_pitched:
+        return
+
+    penultimate_measure_index = max(piece.measures - 2, 0)
+    start_offset = abjad.Offset(Fraction(penultimate_measure_index * piece.measure_quanta, 16))
+    ending_pitched = [
+        leaf
+        for leaf in all_pitched
+        if abjad.get.timespan(leaf).start_offset >= start_offset
+    ]
+    if not ending_pitched:
+        ending_pitched = [all_pitched[-1]]
+
+    first_ending_leaf = ending_pitched[0]
+    last_ending_leaf = ending_pitched[-1]
+    abjad.attach(abjad.Dynamic("p"), first_ending_leaf)
+    abjad.attach(
+        abjad.Markup(r"\markup \italic morendo"),
+        first_ending_leaf,
+        direction=abjad.UP,
+    )
+    abjad.attach(abjad.Dynamic("ppp"), last_ending_leaf)
+
+    final_leaf = abjad.select.leaf(score, -1)
+    abjad.attach(abjad.BarLine("|."), final_leaf)
+
+
 def build_lilypond_file(piece: Piece) -> abjad.LilyPondFile:
     voice_lookup = {voice.staff_id: voice for voice in piece.voices}
 
@@ -141,6 +211,15 @@ def build_lilypond_file(piece: Piece) -> abjad.LilyPondFile:
     )
 
     score = abjad.Score([strings_group, piano_staff], name="Score")
+    _apply_dynamics(
+        violin_staff=violin_staff,
+        viola_staff=viola_staff,
+        cello_staff=cello_staff,
+        piano_rh_staff=piano_rh_staff,
+        piano_lh_staff=piano_lh_staff,
+        piece=piece,
+    )
+    _apply_ending(score, piece)
 
     instrument_names = [
         (violin_staff, "Violin", "Vln."),

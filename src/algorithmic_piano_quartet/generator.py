@@ -102,6 +102,15 @@ def _rest_probability(role: str, current_density: int, limit: int) -> float:
     return min(base, 0.85)
 
 
+def _ending_rest_boost(cursor: int, total_quanta: int, measure_quanta: int) -> float:
+    measures_remaining = (total_quanta - cursor) / measure_quanta
+    if measures_remaining <= 1:
+        return 0.45
+    if measures_remaining <= 2:
+        return 0.2
+    return 0.0
+
+
 def _duration_candidates(role: str, minimum: int, maximum: int, remaining: int) -> list[int]:
     values = _powers_of_two(minimum, maximum, remaining)
     if role == "bass":
@@ -166,11 +175,17 @@ def _generate_voice(
         current_density = tracker.count(cursor)
         choose_rest = current_density >= config.generation.max_simultaneous_tones_per_quantum
         if not choose_rest:
-            choose_rest = rng.random() < _rest_probability(
+            rest_probability = _rest_probability(
                 role,
                 current_density,
                 config.generation.max_simultaneous_tones_per_quantum,
             )
+            rest_probability += _ending_rest_boost(
+                cursor=cursor,
+                total_quanta=total_quanta,
+                measure_quanta=config.generation.measure_quanta,
+            )
+            choose_rest = rng.random() < min(rest_probability, 0.95)
 
         if choose_rest:
             durations = _duration_candidates(role, rest_min, rest_max, measure_remaining)
