@@ -34,6 +34,14 @@ A placeholder scaffold for a future algorithmic composition package. It currentl
 - **Source:** `src/algorithmic/`
 - **CLI:** `python -m algorithmic -o build`
 
+### 5. [Algorithmic Piano Quartet No. 2](README-AlgorithmicPianoQuartetNo2.md)
+
+A separate exploratory branch of the quartet work. It starts from the current No. 1 implementation but is intended to develop independently so new musical ideas can be tested without changing the established No. 1 score.
+
+- **Source:** `src/algorithmic_piano_quartet_no2/`
+- **Config:** `configs/algorithmic-piano-quartet-no2.toml`
+- **CLI:** `python -m algorithmic_piano_quartet_no2 -c configs/algorithmic-piano-quartet-no2.toml -o build`
+
 ## Setup
 
 All projects require Python 3.10+ and LilyPond 2.24+.
@@ -50,6 +58,7 @@ All projects require Python 3.10+ and LilyPond 2.24+.
     modus-operandi-abjad
     jazz-rhythms
     algorithmic-piano-quartet
+    algorithmic-piano-quartet-no2
     algorithmic
     ```
 
@@ -85,6 +94,7 @@ Run the CLIs directly as modules:
 python -m modus_operandi_abjad -o build
 python -m jazz_rhythm -o build
 python -m algorithmic_piano_quartet -c configs/algorithmic-piano-quartet.toml -o build
+python -m algorithmic_piano_quartet_no2 -c configs/algorithmic-piano-quartet-no2.toml -o build
 python -m algorithmic -o build
 ```
 
@@ -94,6 +104,7 @@ Or use the installed console scripts:
 modus-operandi-abjad -o build
 jazz-rhythms -o build
 algorithmic-piano-quartet -c configs/algorithmic-piano-quartet.toml -o build
+algorithmic-piano-quartet-no2 -c configs/algorithmic-piano-quartet-no2.toml -o build
 algorithmic -o build
 ```
 
@@ -110,5 +121,6 @@ GitHub Actions uses a single workflow file, [build.yml](.github/workflows/build.
 - `modus_operandi_abjad` produces `.ly`, `.pdf`, `.midi`, and `.wav`
 - `jazz_rhythm` produces `.ly`, `.pdf`, and `.midi`
 - `algorithmic_piano_quartet` produces uniquely named `.ly`, `.pdf`, `.midi`, and `.wav` when FluidSynth is available
+- `algorithmic_piano_quartet_no2` is available locally but is not part of the default build or release workflow yet
 - `algorithmic` currently produces placeholder `.ly`, `.pdf`, and `.midi`
 - pushing a version tag creates one GitHub release containing assets from the built projects
