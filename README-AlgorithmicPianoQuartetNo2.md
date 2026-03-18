@@ -34,6 +34,35 @@ This package exists so that new ideas can be explored without changing the exist
 - instrumentation rules
 - rendering and notation choices
 
+## How No. 2 Differs From No. 1
+
+No. 2 begins from the same general quartet setup as **Algo Rhythms Quartet No. 1**, but it is already moving in a different direction.
+
+Musically, No. 2 currently differs in these ways:
+
+- the piano is allowed to generate chords instead of only single-note lines
+- piano chords are shaped to prefer wider spacing, especially thirds, fourths, and larger intervals
+- left-hand and right-hand chord sizes are controlled separately
+- left-hand chords can open out more widely than right-hand chords
+- crushed intervals smaller than a minor third are avoided in the piano voicings
+- the practical top of the piano range has been lowered for No. 2
+
+Technically, No. 2 also differs from No. 1 in these ways:
+
+- it has its own module: `algorithmic_piano_quartet_no2`
+- it has its own config: `configs/algorithmic-piano-quartet-no2.toml`
+- it has its own output basename and artifact names
+- it is part of the local `build.sh` workflow
+- it is still excluded from GitHub Actions while the musical design is in flux
+
+What is still shared with No. 1:
+
+- the same basic instrumentation: piano, violin, viola, cello
+- the same general generation architecture
+- the same current soundfont/render pipeline
+
+That means No. 2 is not a completely new system yet. It is a controlled fork of No. 1 for exploring new musical behavior without rewriting the original piece.
+
 ## Typical Commands
 
 Build notation, MIDI, and LilyPond source:
