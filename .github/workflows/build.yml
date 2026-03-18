@@ -106,7 +106,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y fluidsynth ffmpeg
 
       - name: Build Piano Quartet Study outputs
-        run: python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf --wav
+        run: python -m algorithmic_piano_quartet -c configs/algorithmic-piano-quartet.toml -o build --pdf --wav
 
       - name: Upload Piano Quartet Study artifacts
         uses: actions/upload-artifact@v4

@@ -10,7 +10,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VENV_DIR="${ROOT_DIR}/.venv"
 OUTPUT_DIR="${1:-build}"
-QUARTET_CONFIG="${ROOT_DIR}/piano-quartet.toml"
+QUARTET_CONFIG="${ROOT_DIR}/configs/algorithmic-piano-quartet.toml"
 HAS_FLUIDSYNTH=0
 HAS_FFMPEG=0
 HAS_ALGORITHMIC=0

@@ -51,13 +51,13 @@ Although this study belongs to a larger atonal project, the present material is 
 
 ## Files
 
-- **Config:** `piano-quartet.toml`
+- **Config:** `configs/algorithmic-piano-quartet.toml`
 - **Source:** `src/algorithmic_piano_quartet/`
 - **CLI:** `python -m algorithmic_piano_quartet`
 
 ## Configuration Settings
 
-The quartet is configured with `piano-quartet.toml`. The available sections are:
+The quartet is configured with `configs/algorithmic-piano-quartet.toml`. The available sections are:
 
 ### Top-Level Fields
 
@@ -129,7 +129,7 @@ The current quartet uses four `[[parts]]` blocks:
 From the repository root:
 
 ```bash
-PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf --wav
+PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c configs/algorithmic-piano-quartet.toml -o build --pdf --wav
 ```
 
 This produces uniquely named output files in `build/`, including:
@@ -143,7 +143,7 @@ The filename stem is built from the configured base name plus selected generatio
 
 ## Notes On Audio
 
-WAV rendering is done from Python through FluidSynth using the soundfont configured in `piano-quartet.toml`.
+WAV rendering is done from Python through FluidSynth using the soundfont configured in `configs/algorithmic-piano-quartet.toml`.
 
 The current final production setup uses two soundfonts:
 
@@ -168,11 +168,11 @@ If the selected soundfont does not contain violin, viola, and cello patches, tho
 Render notation only:
 
 ```bash
-PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf
+PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c configs/algorithmic-piano-quartet.toml -o build --pdf
 ```
 
 Override measures and tempo from the command line:
 
 ```bash
-PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c piano-quartet.toml -o build --pdf --wav --measures 24 --tempo 96
+PYTHONPATH=src ./.venv/bin/python -m algorithmic_piano_quartet -c configs/algorithmic-piano-quartet.toml -o build --pdf --wav --measures 24 --tempo 96
 ```

@@ -27,8 +27,8 @@ def parse_args(argv=None):
     parser.add_argument(
         "-c",
         "--config",
-        default="piano-quartet.toml",
-        help="path to TOML config (default: piano-quartet.toml)",
+        default="configs/algorithmic-piano-quartet.toml",
+        help="path to TOML config (default: configs/algorithmic-piano-quartet.toml)",
     )
     parser.add_argument(
         "-o",

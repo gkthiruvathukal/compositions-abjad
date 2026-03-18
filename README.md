@@ -25,7 +25,7 @@ A collection of generated jazz comping rhythms (Charleston, anticipation, syncop
 A generated **tonal** chamber study for piano, violin, viola, and cello. This is an exploratory step toward a future atonal composition system, but this study itself is tonal and should be described that way.
 
 - **Source:** `src/algorithmic_piano_quartet/`
-- **CLI:** `python -m algorithmic_piano_quartet -c piano-quartet.toml -o build`
+- **CLI:** `python -m algorithmic_piano_quartet -c configs/algorithmic-piano-quartet.toml -o build`
 
 ### 4. [Algorithmic](README-Algorithmic.md)
 
@@ -84,7 +84,7 @@ Run the CLIs directly as modules:
 ```bash
 python -m modus_operandi_abjad -o build
 python -m jazz_rhythm -o build
-python -m algorithmic_piano_quartet -c piano-quartet.toml -o build
+python -m algorithmic_piano_quartet -c configs/algorithmic-piano-quartet.toml -o build
 python -m algorithmic -o build
 ```
 
@@ -93,7 +93,7 @@ Or use the installed console scripts:
 ```bash
 modus-operandi-abjad -o build
 jazz-rhythms -o build
-algorithmic-piano-quartet -c piano-quartet.toml -o build
+algorithmic-piano-quartet -c configs/algorithmic-piano-quartet.toml -o build
 algorithmic -o build
 ```
 
