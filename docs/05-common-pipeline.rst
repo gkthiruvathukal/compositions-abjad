@@ -9,9 +9,18 @@ Reproducibility matters more in the quartet packages than in the fixed-score pac
 
 The quartet audio path is a good example of the pipeline becoming more specialized when the musical needs require it. A single piano SoundFont is not enough for a quartet, and a single orchestral SoundFont does not give the best piano result. The system therefore renders the piano layer and the string layer separately and combines them afterward. The CLI is still simple from the outside, but the internal render path is more careful.
 
-The main quartet CLI shows this pattern clearly. The key point is not the argument parser itself. It is the final decision point that decides whether to compile notation only, render a single SoundFont path, or render separate piano and string layers:
+The end of the main quartet CLI shows this in two steps. First, it decides which outputs LilyPond needs to compile:
 
 .. literalinclude:: ../src/algorithmic_piano_quartet/cli.py
    :language: python
-   :lines: 246-280
-   :caption: Final render dispatch in the first quartet package.
+   :start-after: docs: begin quartet-output-compilation
+   :end-before: docs: end quartet-output-compilation
+   :caption: Output compilation decisions in the first quartet CLI.
+
+Then it decides how WAV rendering should happen once the MIDI file exists:
+
+.. literalinclude:: ../src/algorithmic_piano_quartet/cli.py
+   :language: python
+   :start-after: docs: begin quartet-wav-rendering
+   :end-before: docs: end quartet-wav-rendering
+   :caption: WAV rendering choices in the first quartet CLI.

@@ -237,6 +237,7 @@ def main(argv=None):
     lilypond_file = build_lilypond_file(piece)
     ly_path = write_ly(lilypond_file, args.output_dir, stem)
 
+    # docs: begin quartet-output-compilation
     formats_to_compile = set()
     if args.pdf:
         formats_to_compile.add("pdf")
@@ -249,7 +250,9 @@ def main(argv=None):
         compile_lilypond(ly_path, args.output_dir, stem, formats_to_compile)
     elif args.ly:
         print("Done (--ly only, skipping LilyPond compilation).")
+    # docs: end quartet-output-compilation
 
+    # docs: begin quartet-wav-rendering
     if args.wav:
         midi_path = os.path.join(args.output_dir, f"{stem}.midi")
         wav_path = os.path.join(args.output_dir, f"{stem}.wav")
@@ -280,6 +283,7 @@ def main(argv=None):
                 "WAV rendering requires --soundfont, [render].soundfont, "
                 "or both [render].piano_soundfont and [render].strings_soundfont."
             )
+    # docs: end quartet-wav-rendering
 
 
 if __name__ == "__main__":
