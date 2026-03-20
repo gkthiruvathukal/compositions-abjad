@@ -267,6 +267,11 @@ jobs:
           name: algorithmic
           path: release/algorithmic
 
+      - name: Install thumbnail tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils imagemagick
+
       - name: Create stable quartet aliases
         run: |
           set -euo pipefail
@@ -276,6 +281,37 @@ jobs:
             cp "${no1[0]}" "release/piano-quartet-study/algo-rhythms-quartet-no-1.${ext}"
             cp "${no2[0]}" "release/piano-quartet-no2/algorithmic-piano-quartet-no-2.${ext}"
           done
+
+      - name: Create score thumbnails
+        run: |
+          set -euo pipefail
+
+          create_thumbnail() {
+            local pdf_path="$1"
+            local png_path="$2"
+            local base_path="${png_path%.png}"
+            local temp_path="${base_path}-page1"
+
+            pdftoppm -png -f 1 -singlefile "${pdf_path}" "${temp_path}"
+            magick "${temp_path}.png" -resize 50% "${png_path}"
+            rm -f "${temp_path}.png"
+          }
+
+          create_thumbnail \
+            "release/modus-operandi-abjad/modus-operandi-abjad.pdf" \
+            "release/modus-operandi-abjad/modus-operandi-abjad-thumbnail.png"
+          create_thumbnail \
+            "release/jazz-rhythms/jazz-rhythms.pdf" \
+            "release/jazz-rhythms/jazz-rhythms-thumbnail.png"
+          create_thumbnail \
+            "release/piano-quartet-study/algo-rhythms-quartet-no-1.pdf" \
+            "release/piano-quartet-study/algo-rhythms-quartet-no-1-thumbnail.png"
+          create_thumbnail \
+            "release/piano-quartet-no2/algorithmic-piano-quartet-no-2.pdf" \
+            "release/piano-quartet-no2/algorithmic-piano-quartet-no-2-thumbnail.png"
+          create_thumbnail \
+            "release/algorithmic/algorithmic.pdf" \
+            "release/algorithmic/algorithmic-thumbnail.png"
 
       - name: Create release
         env:
@@ -290,17 +326,22 @@ jobs:
             release/modus-operandi-abjad/modus-operandi-abjad.midi \
             release/modus-operandi-abjad/modus-operandi-abjad.ly \
             release/modus-operandi-abjad/modus-operandi-abjad.wav \
+            release/modus-operandi-abjad/modus-operandi-abjad-thumbnail.png \
             release/jazz-rhythms/jazz-rhythms.pdf \
             release/jazz-rhythms/jazz-rhythms.midi \
             release/jazz-rhythms/jazz-rhythms.ly \
+            release/jazz-rhythms/jazz-rhythms-thumbnail.png \
             release/piano-quartet-study/algo-rhythms-quartet-no-1.pdf \
             release/piano-quartet-study/algo-rhythms-quartet-no-1.midi \
             release/piano-quartet-study/algo-rhythms-quartet-no-1.ly \
             release/piano-quartet-study/algo-rhythms-quartet-no-1.wav \
+            release/piano-quartet-study/algo-rhythms-quartet-no-1-thumbnail.png \
             release/piano-quartet-no2/algorithmic-piano-quartet-no-2.pdf \
             release/piano-quartet-no2/algorithmic-piano-quartet-no-2.midi \
             release/piano-quartet-no2/algorithmic-piano-quartet-no-2.ly \
             release/piano-quartet-no2/algorithmic-piano-quartet-no-2.wav \
+            release/piano-quartet-no2/algorithmic-piano-quartet-no-2-thumbnail.png \
             release/algorithmic/algorithmic.pdf \
             release/algorithmic/algorithmic.midi \
-            release/algorithmic/algorithmic.ly
+            release/algorithmic/algorithmic.ly \
+            release/algorithmic/algorithmic-thumbnail.png
