@@ -11,6 +11,32 @@ permissions:
   contents: write
 
 jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install package and docs dependencies
+        run: |
+          pip install -e .
+          pip install -r docs/requirements.txt
+
+      - name: Build documentation PDF
+        run: make -C docs latexpdf
+
+      - name: Upload documentation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: composition-report
+          path: docs/_build/latex/composition-report.pdf
+
   build-modus-operandi:
     runs-on: ubuntu-latest
 
@@ -157,6 +183,7 @@ jobs:
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs:
+      - build-docs
       - build-modus-operandi
       - build-jazz-rhythms
       - build-piano-quartet-study
@@ -164,6 +191,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Download documentation artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: composition-report
+          path: release/docs
+
       - name: Download Modus Operandi artifacts
         uses: actions/download-artifact@v4
         with:
@@ -196,6 +229,7 @@ jobs:
             --repo "${{ github.repository }}" \
             --title "${{ github.ref_name }}" \
             --generate-notes \
+            release/docs/composition-report.pdf \
             release/modus-operandi-abjad/modus-operandi-abjad.pdf \
             release/modus-operandi-abjad/modus-operandi-abjad.midi \
             release/modus-operandi-abjad/modus-operandi-abjad.ly \

@@ -1,0 +1,4 @@
+Abstract
+========
+
+This report describes a programmatic music composition environment built in Python with Abjad and LilyPond. The repository combines finished scores, reusable compositional utilities, and exploratory algorithmic studies in one reproducible workflow. Each score can be generated from source, engraved to PDF, exported to MIDI, rendered to WAV when audio tools are present, and published through an automated release pipeline. The current repository contains five active score paths: a three-movement piano work, a library of jazz rhythmic studies, a first algorithmic piano quartet, a second and more experimental quartet branch, and a scaffold for future algorithmic work. The main point of the project is not only to produce scores, but also to show how composition, notation, rendering, and release engineering can live in the same system.
