@@ -29,6 +29,14 @@ Listen
 
    A WAV player is not available for this score yet. Audio support for this case study is planned.
 
+Score Preview
+-------------
+
+.. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms-thumbnail.png
+   :alt: First page preview of Jazz Rhythmic Patterns
+   :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf
+   :width: 50%
+
 The pattern functions are intentionally small:
 
 .. literalinclude:: ../src/jazz_rhythm/rhythms.py

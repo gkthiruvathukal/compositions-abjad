@@ -41,6 +41,14 @@ Listen
    Audio:
    `modus-operandi-abjad.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.wav>`_
 
+Score Preview
+-------------
+
+.. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad-thumbnail.png
+   :alt: First page preview of Modus Operandi for Piano
+   :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.pdf
+   :width: 50%
+
 The movement-building code is direct enough to read almost like score notation. It is still too long to reproduce in full in the body of the paper, so only the opening of the movement is shown here:
 
 .. literalinclude:: ../src/modus_operandi_abjad/score.py

@@ -45,6 +45,14 @@ Listen
    Audio:
    `algorithmic-piano-quartet-no-2.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.wav>`_
 
+Score Preview
+-------------
+
+.. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2-thumbnail.png
+   :alt: First page preview of Algorithmic Piano Quartet No. 2
+   :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.pdf
+   :width: 50%
+
 The config classes make that change easy to see. ``PartConfig`` still carries one instrument definition, including name, role, staff type, and range. ``RenderConfig`` still carries the SoundFont choices and sample rate. The main difference is ``GenerationConfig``. In No. 2, this class carries the extra piano controls: separate occupancy for piano, separate chord-size limits for each hand, separate span limits, and separate preferred interval lists. Those fields are the link between the TOML file and the generator.
 
 .. literalinclude:: ../src/algorithmic_piano_quartet_no2/config.py

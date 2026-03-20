@@ -57,6 +57,14 @@ Listen
    Audio:
    `algo-rhythms-quartet-no-1.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav>`_
 
+Score Preview
+-------------
+
+.. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1-thumbnail.png
+   :alt: First page preview of Algo Rhythms Quartet No. 1
+   :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.pdf
+   :width: 50%
+
 That event loop sits near the center of the package:
 
 .. literalinclude:: ../src/algorithmic_piano_quartet/generator.py

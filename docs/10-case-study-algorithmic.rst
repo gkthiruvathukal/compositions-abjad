@@ -29,6 +29,14 @@ Listen
 
    A WAV player is not available for this score yet. Audio support for this case study is planned.
 
+Score Preview
+-------------
+
+.. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-thumbnail.png
+   :alt: First page preview of the Algorithmic scaffold score
+   :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.pdf
+   :width: 50%
+
 The placeholder score code is intentionally small:
 
 .. literalinclude:: ../src/algorithmic/score.py
