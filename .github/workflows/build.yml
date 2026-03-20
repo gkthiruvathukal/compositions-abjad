@@ -293,7 +293,7 @@ jobs:
             local temp_path="${base_path}-page1"
 
             pdftoppm -png -f 1 -singlefile "${pdf_path}" "${temp_path}"
-            magick "${temp_path}.png" -resize 50% "${png_path}"
+            convert "${temp_path}.png" -resize 50% "${png_path}"
             rm -f "${temp_path}.png"
           }
 
