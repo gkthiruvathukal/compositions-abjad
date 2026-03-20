@@ -86,6 +86,14 @@ You can override the output directory:
 ./build.sh out
 ```
 
+For the Sphinx report and docs site, use the separate docs build:
+
+```bash
+./build-docs.sh
+```
+
+This bootstraps `.venv`, installs the docs dependencies, builds the HTML site, and builds the PDF when `latexmk` is installed.
+
 If you prefer running the project entry points directly, use:
 
 Run the CLIs directly as modules:
