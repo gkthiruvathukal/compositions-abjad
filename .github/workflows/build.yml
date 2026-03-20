@@ -28,8 +28,15 @@ jobs:
           pip install -e .
           pip install -r docs/requirements.txt
 
+      - name: Generate LaTeX sources
+        run: sphinx-build -M latex docs docs/_build
+
       - name: Build documentation PDF
-        run: make -C docs latexpdf
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: composition-report.tex
+          working_directory: docs/_build/latex
+          texlive_version: latest
 
       - name: Upload documentation artifact
         uses: actions/upload-artifact@v4
