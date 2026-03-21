@@ -1,5 +1,8 @@
 # Music Composition with Abjad
 
+[![Build And Release](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/build.yml)
+[![Docs](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/docs.yml)
+
 This repository contains programmatic music composition work built with [Python](https://www.python.org/), [Abjad](https://abjad.github.io/), and [LilyPond](https://lilypond.org/). It includes finished scores, exploratory composition systems, and a Sphinx-based technical report.
 
 ## Documentation
