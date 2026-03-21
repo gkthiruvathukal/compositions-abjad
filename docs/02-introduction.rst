@@ -14,3 +14,14 @@ This repository was built around that idea. It uses Python, Abjad, and LilyPond 
 The artistic motivation shows most clearly in the quartet work. ``Algo Rhythms Quartet No. 1`` is a proof of concept for a larger planned system. ``Algorithmic Piano Quartet No. 2`` begins from the same base but is allowed to change more freely so that new musical ideas can be tested without rewriting the original piece. This makes the repository useful in two ways at once. It preserves completed work, and it gives a controlled place for technical and musical experiments.
 
 The goal of this report is to describe that combined system in a form closer to a technical paper than to a project README. The report focuses on architecture, generation methods, rendering, and release workflow. It also discusses each current score in enough detail to show how the musical ideas and the code design fit together.
+
+About the Author
+-----------------
+
+*George K. Thiruvathukal, PhD* is *Professor and Chairperson* in the `Department of Computer Science <https://www.luc.edu/cs/>`__ at `Loyola University Chicago <https://www.luc.edu/>`__.
+He is also a *Visiting Computer Scientist* at `Argonne National Laboratory <https://www.anl.gov/>`__ in the `Leadership Computing Facility (ALCF) <https://www.alcf.anl.gov/>`__.
+As of January 2026, he is a *Postbaccalaureate Student* and pianist in `Music/Jazz at Loyola <https://www.luc.edu/music/>`__ at `Loyola University Chicago <https://www.luc.edu/>`__, hoping against all odds to become a serious jazz musician and composer. Wish him (me) luck!
+
+For more information, please see `gkt.sh <https://gkt.sh>`__.
+
+

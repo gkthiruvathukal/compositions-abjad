@@ -1,19 +1,6 @@
 Composition using Python and Abjad/LilyPond: Life Beyond Notation Software
 ==========================================================================
 
-.. |br| raw:: html latex
-
-   <br />
-   \\
-
-**George K. Thiruvathukal, PhD** |br|
-*Professor and Chairperson, `Department of Computer Science <https://www.luc.edu/cs/>`_, `Loyola University Chicago <https://www.luc.edu/>`_* |br|
-*Visiting Computer Scientist, `Argonne National Laboratory <https://www.anl.gov/>`_, `Leadership Computing Facility (ALCF) <https://www.alcf.anl.gov/>`_* |br|
-*Postbaccalaureate Student in `Music at Loyola <https://www.luc.edu/music/>`_, `Loyola University Chicago <https://www.luc.edu/>`_* |br|
-`https://gkt.sh <https://gkt.sh>`_
-
-----
-
 This documentation tree is the working home for the technical report. The target format is an ArXiv-style paper, but the material is organized here first as Sphinx documents so the report can evolve in smaller pieces. For now, distribution of this report is via Figshare at `doi.org/10.6084/m9.figshare.31827391 <https://doi.org/10.6084/m9.figshare.31827391.v1>`__
 
 If this repository or the accompanying report is useful in your own work, please consider citing it.
@@ -28,6 +15,7 @@ If this repository or the accompanying report is useful in your own work, please
      url = "https://figshare.com/articles/online_resource/Composition_using_Python_and_Abjad_LilyPond_Life_Beyond_Notation_Software/31827391",
      doi = "10.6084/m9.figshare.31827391.v1"
    }
+
 
 .. toctree::
    :maxdepth: 1
