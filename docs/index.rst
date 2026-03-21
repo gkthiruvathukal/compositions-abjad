@@ -1,11 +1,16 @@
 Composition using Python and Abjad/LilyPond: Life Beyond Notation Software
 ==========================================================================
 
-| **George K. Thiruvathukal, PhD**
-| *Professor and Chairperson, `Department of Computer Science <https://www.luc.edu/cs/>`_, `Loyola University Chicago <https://www.luc.edu/>`_*
-| *Visiting Computer Scientist, `Argonne National Laboratory <https://www.anl.gov/>`_, `Leadership Computing Facility (ALCF) <https://www.alcf.anl.gov/>`_*
-| *Postbaccalaureate Student in `Music at Loyola <https://www.luc.edu/music/>`_, `Loyola University Chicago <https://www.luc.edu/>`_*
-| `https://gkt.sh <https://gkt.sh>`_
+.. |br| raw:: html latex
+
+   <br />
+   \\
+
+**George K. Thiruvathukal, PhD** |br|
+*Professor and Chairperson, `Department of Computer Science <https://www.luc.edu/cs/>`_, `Loyola University Chicago <https://www.luc.edu/>`_* |br|
+*Visiting Computer Scientist, `Argonne National Laboratory <https://www.anl.gov/>`_, `Leadership Computing Facility (ALCF) <https://www.alcf.anl.gov/>`_* |br|
+*Postbaccalaureate Student in `Music at Loyola <https://www.luc.edu/music/>`_, `Loyola University Chicago <https://www.luc.edu/>`_* |br|
+`https://gkt.sh <https://gkt.sh>`_
 
 ----
 
