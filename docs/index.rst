@@ -7,7 +7,7 @@ Composition using Python and Abjad/LilyPond: Life Beyond Notation Software
 | Postbaccalaureate Student in Music, Loyola University Chicago
 | `https://gkt.sh <https://gkt.sh>`_
 
-This documentation tree is the working home for the technical report. The target format is an ArXiv-style paper, but the material is organized here first as Sphinx documents so the report can evolve in smaller pieces. For now, distribution of this report is via Figshare.
+This documentation tree is the working home for the technical report. The target format is an ArXiv-style paper, but the material is organized here first as Sphinx documents so the report can evolve in smaller pieces. For now, distribution of this report is via Figshare at `doi.org/10.6084/m9.figshare.31827391 <https://doi.org/10.6084/m9.figshare.31827391.v1>`__
 
 If this repository or the accompanying report is useful in your own work, please consider citing it.
 
