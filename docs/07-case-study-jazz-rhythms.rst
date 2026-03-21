@@ -22,12 +22,14 @@ Download
    * - WAV
      - Not published for this score
 
-Listen
-------
+.. only:: html
 
-.. note::
+   Listen
+   ------
 
-   A WAV player is not available for this score yet. Audio support for this case study is planned.
+   .. note::
+
+      A WAV player is not available for this score yet. Audio support for this case study is planned.
 
 Score Preview
 -------------

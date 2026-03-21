@@ -40,10 +40,10 @@ Download
    * - WAV
      - `algo-rhythms-quartet-no-1.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav>`_
 
-Listen
-------
-
 .. only:: html
+
+   Listen
+   ------
 
    .. raw:: html
 
@@ -51,11 +51,6 @@ Listen
         <source src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
-
-.. only:: not html
-
-   Audio:
-   `algo-rhythms-quartet-no-1.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav>`_
 
 Score Preview
 -------------

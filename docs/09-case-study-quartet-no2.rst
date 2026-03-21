@@ -28,10 +28,10 @@ Download
    * - WAV
      - `algorithmic-piano-quartet-no-2.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.wav>`_
 
-Listen
-------
-
 .. only:: html
+
+   Listen
+   ------
 
    .. raw:: html
 
@@ -39,11 +39,6 @@ Listen
         <source src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
-
-.. only:: not html
-
-   Audio:
-   `algorithmic-piano-quartet-no-2.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.wav>`_
 
 Score Preview
 -------------

@@ -24,10 +24,10 @@ Download
    * - WAV
      - `modus-operandi-abjad.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.wav>`_
 
-Listen
-------
-
 .. only:: html
+
+   Listen
+   ------
 
    .. raw:: html
 
@@ -35,11 +35,6 @@ Listen
         <source src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
-
-.. only:: not html
-
-   Audio:
-   `modus-operandi-abjad.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.wav>`_
 
 Score Preview
 -------------
