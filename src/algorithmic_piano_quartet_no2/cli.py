@@ -1,4 +1,4 @@
-"""CLI for building algorithmic piano quartet No. 2."""
+"""CLI for building Algo Rhythms Quartet No. 2."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from .soundfonts import ensure_soundfont
 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(
-        description="Generate algorithmic piano quartet No. 2 from TOML config.",
+        description="Generate Algo Rhythms Quartet No. 2 from TOML config.",
     )
     parser.add_argument(
         "-c",

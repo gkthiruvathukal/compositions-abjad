@@ -183,10 +183,10 @@ jobs:
         with:
           name: piano-quartet-no2
           path: |
-            build/algorithmic-piano-quartet-no-2*.ly
-            build/algorithmic-piano-quartet-no-2*.pdf
-            build/algorithmic-piano-quartet-no-2*.midi
-            build/algorithmic-piano-quartet-no-2*.wav
+            build/algo-rhythms-quartet-no-2*.ly
+            build/algo-rhythms-quartet-no-2*.pdf
+            build/algo-rhythms-quartet-no-2*.midi
+            build/algo-rhythms-quartet-no-2*.wav
 
   build-algorithmic:
     runs-on: ubuntu-latest
@@ -278,9 +278,9 @@ jobs:
           set -euo pipefail
           for ext in pdf midi ly wav; do
             no1=(release/piano-quartet-study/algo-rhythms-quartet-no-1*.${ext})
-            no2=(release/piano-quartet-no2/algorithmic-piano-quartet-no-2*.${ext})
+            no2=(release/piano-quartet-no2/algo-rhythms-quartet-no-2*.${ext})
             cp "${no1[0]}" "release/piano-quartet-study/algo-rhythms-quartet-no-1.${ext}"
-            cp "${no2[0]}" "release/piano-quartet-no2/algorithmic-piano-quartet-no-2.${ext}"
+            cp "${no2[0]}" "release/piano-quartet-no2/algo-rhythms-quartet-no-2.${ext}"
           done
 
       - name: Create score thumbnails
@@ -308,8 +308,8 @@ jobs:
             "release/piano-quartet-study/algo-rhythms-quartet-no-1.pdf" \
             "release/piano-quartet-study/algo-rhythms-quartet-no-1-thumbnail.png"
           create_thumbnail \
-            "release/piano-quartet-no2/algorithmic-piano-quartet-no-2.pdf" \
-            "release/piano-quartet-no2/algorithmic-piano-quartet-no-2-thumbnail.png"
+            "release/piano-quartet-no2/algo-rhythms-quartet-no-2.pdf" \
+            "release/piano-quartet-no2/algo-rhythms-quartet-no-2-thumbnail.png"
           create_thumbnail \
             "release/algorithmic/algorithmic.pdf" \
             "release/algorithmic/algorithmic-thumbnail.png"
@@ -338,11 +338,11 @@ jobs:
             release/piano-quartet-study/algo-rhythms-quartet-no-1.ly \
             release/piano-quartet-study/algo-rhythms-quartet-no-1.wav \
             release/piano-quartet-study/algo-rhythms-quartet-no-1-thumbnail.png \
-            release/piano-quartet-no2/algorithmic-piano-quartet-no-2.pdf \
-            release/piano-quartet-no2/algorithmic-piano-quartet-no-2.midi \
-            release/piano-quartet-no2/algorithmic-piano-quartet-no-2.ly \
-            release/piano-quartet-no2/algorithmic-piano-quartet-no-2.wav \
-            release/piano-quartet-no2/algorithmic-piano-quartet-no-2-thumbnail.png \
+            release/piano-quartet-no2/algo-rhythms-quartet-no-2.pdf \
+            release/piano-quartet-no2/algo-rhythms-quartet-no-2.midi \
+            release/piano-quartet-no2/algo-rhythms-quartet-no-2.ly \
+            release/piano-quartet-no2/algo-rhythms-quartet-no-2.wav \
+            release/piano-quartet-no2/algo-rhythms-quartet-no-2-thumbnail.png \
             release/algorithmic/algorithmic.pdf \
             release/algorithmic/algorithmic.midi \
             release/algorithmic/algorithmic.ly \

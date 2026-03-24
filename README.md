@@ -79,7 +79,7 @@ A generated tonal piano quartet for piano, violin, viola, and cello. This is the
 | MIDI | [algo-rhythms-quartet-no-1.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.midi) |
 | WAV | [algo-rhythms-quartet-no-1.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav) |
 
-### Algorithmic Piano Quartet No. 2
+### Algo Rhythms Quartet No. 2
 
 A separate exploratory branch of the quartet work. It starts from No. 1 but is allowed to evolve independently.
 
@@ -89,10 +89,10 @@ A separate exploratory branch of the quartet work. It starts from No. 1 but is a
 
 | Format | Link |
 | --- | --- |
-| PDF | [algorithmic-piano-quartet-no-2.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.pdf) |
-| LilyPond | [algorithmic-piano-quartet-no-2.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.ly) |
-| MIDI | [algorithmic-piano-quartet-no-2.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.midi) |
-| WAV | [algorithmic-piano-quartet-no-2.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.wav) |
+| PDF | [algo-rhythms-quartet-no-2.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.pdf) |
+| LilyPond | [algo-rhythms-quartet-no-2.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.ly) |
+| MIDI | [algo-rhythms-quartet-no-2.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.midi) |
+| WAV | [algo-rhythms-quartet-no-2.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.wav) |
 
 ### Algorithmic
 

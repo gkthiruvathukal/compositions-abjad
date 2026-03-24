@@ -1,4 +1,4 @@
-"""Abjad score assembly for algorithmic piano quartet No. 2."""
+"""Abjad score assembly for Algo Rhythms Quartet No. 2."""
 
 from __future__ import annotations
 

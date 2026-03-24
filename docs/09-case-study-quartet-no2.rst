@@ -1,7 +1,7 @@
-Case Study IV: Algorithmic Piano Quartet No. 2
-===============================================
+Case Study IV: Algo Rhythms Quartet No. 2
+=========================================
 
-``Algorithmic Piano Quartet No. 2`` exists because the repository needed a place to continue experimenting without destabilizing No. 1.
+``Algo Rhythms Quartet No. 2`` exists because the repository needed a place to continue experimenting without destabilizing No. 1.
 From a software point of view, this is a forked package.
 From a musical point of view, it is a controlled branch for testing new behavior.
 The decision to fork rather than rewrite No. 1 in place is important.
@@ -36,13 +36,13 @@ Download
    * - Format
      - Link
    * - PDF
-     - `algorithmic-piano-quartet-no-2.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.pdf>`_
+     - `algo-rhythms-quartet-no-2.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.pdf>`_
    * - LilyPond
-     - `algorithmic-piano-quartet-no-2.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.ly>`_
+     - `algo-rhythms-quartet-no-2.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.ly>`_
    * - MIDI
-     - `algorithmic-piano-quartet-no-2.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.midi>`_
+     - `algo-rhythms-quartet-no-2.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.midi>`_
    * - WAV
-     - `algorithmic-piano-quartet-no-2.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.wav>`_
+     - `algo-rhythms-quartet-no-2.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.wav>`_
 
 .. only:: html
 
@@ -52,16 +52,16 @@ Download
    .. raw:: html
 
       <audio controls preload="none">
-        <source src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.wav" type="audio/wav">
+        <source src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.wav" type="audio/wav">
         Your browser does not support the audio element.
       </audio>
 
 Score Preview
 -------------
 
-.. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2-thumbnail.png
-   :alt: First page preview of Algorithmic Piano Quartet No. 2
-   :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-piano-quartet-no-2.pdf
+.. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2-thumbnail.png
+   :alt: First page preview of Algo Rhythms Quartet No. 2
+   :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.pdf
    :width: 50%
 
 The config classes make that change easy to see.

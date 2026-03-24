@@ -1,4 +1,4 @@
-"""Configuration loading for algorithmic piano quartet No. 2."""
+"""Configuration loading for Algo Rhythms Quartet No. 2."""
 
 from __future__ import annotations
 
@@ -244,10 +244,10 @@ def load_config(path: str | Path) -> ProjectConfig:
     output_data = data.get("output", {})
 
     return ProjectConfig(
-        title=data.get("title", "Untitled Piano Quartet No. 2"),
+        title=data.get("title", "Untitled Algo Rhythms Quartet No. 2"),
         composer=data.get("composer", "Unknown Composer"),
         output=OutputConfig(
-            basename=output_data.get("basename", "algorithmic-piano-quartet-no2"),
+            basename=output_data.get("basename", "algo-rhythms-quartet-no-2"),
             label=output_data.get("label"),
             include_measures=output_data.get("include_measures", True),
             include_tempo=output_data.get("include_tempo", True),

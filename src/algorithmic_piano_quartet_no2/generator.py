@@ -1,4 +1,4 @@
-"""Generate algorithmic piano quartet No. 2."""
+"""Generate Algo Rhythms Quartet No. 2."""
 
 from __future__ import annotations
 

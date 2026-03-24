@@ -29,7 +29,7 @@ The result is a repository that functions as both a set of compositions and a so
 
 The artistic motivation shows most clearly in the quartet work.
 ``Algo Rhythms Quartet No. 1`` is a proof of concept for a larger planned system.
-``Algorithmic Piano Quartet No. 2`` begins from the same base but is allowed to change more freely so that new musical ideas can be tested without rewriting the original piece.
+``Algo Rhythms Quartet No. 2`` begins from the same base but is allowed to change more freely so that new musical ideas can be tested without rewriting the original piece.
 This makes the repository useful in two ways at once.
 It preserves completed work, and it gives a controlled place for technical and musical experiments.
 
@@ -47,5 +47,4 @@ As of January 2026, he is a *Postbaccalaureate Student* and pianist in `Music/Ja
 Wish him (me) luck!
 
 For more information, please see `gkt.sh <https://gkt.sh>`__.
-
 

@@ -1,4 +1,4 @@
-"""SoundFont helpers for algorithmic piano quartet No. 2 audio rendering."""
+"""SoundFont helpers for Algo Rhythms Quartet No. 2 audio rendering."""
 
 from __future__ import annotations
 

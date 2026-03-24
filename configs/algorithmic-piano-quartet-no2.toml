@@ -1,8 +1,8 @@
-title = "Algorithmic Piano Quartet No. 2"
+title = "Algo Rhythms Quartet No. 2"
 composer = "George K. Thiruvathukal"
 
 [output]
-basename = "algorithmic-piano-quartet-no-2"
+basename = "algo-rhythms-quartet-no-2"
 label = ""
 include_measures = true
 include_tempo = true

@@ -22,7 +22,7 @@ Quartet packages add a fourth layer for configuration loading and a fifth layer 
 
 The architecture also separates stable work from exploratory work.
 ``Algo Rhythms Quartet No. 1`` stays fixed as a proof-of-concept score.
-``Algorithmic Piano Quartet No. 2`` is allowed to diverge.
+``Algo Rhythms Quartet No. 2`` is allowed to diverge.
 This is a software architecture decision, but it is also a compositional one.
 It lets the repository preserve finished work without blocking further musical experiments.
 
