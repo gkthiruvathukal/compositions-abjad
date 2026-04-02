@@ -2,7 +2,7 @@ Case Study VI: Bird Im-Migration
 ================================
 
 The ``bird_im_migration`` package adapts a spectral-composition workflow into the larger ``compositions-abjad`` repository.
-It begins from a field recording of birds and a SPEAR partial-tracking analysis of that recording.
+It begins from a field recording of birds and a `SPEAR <https://www.klingbeil.com/spear/>`__  partial-tracking analysis of that recording.
 The compositional goal is to reduce bird-like spectral behavior into performable notation while preserving a visible link to the source analysis.
 
 Unlike the more abstract or algorithmic case studies in this repository, this package starts with a fixed audio analysis file and then applies musical reduction on top of it.
@@ -15,7 +15,7 @@ Download
 .. list-table::
    :header-rows: 1
 
-   * - Variant
+   * - Quantization
      - Format
      - Link
    * - q16
@@ -48,8 +48,8 @@ Download
    Listen
    ------
 
-   q16
-   ^^^
+   q16 = 16th notes
+   ^^^^^^^^^^^^^^^^^^
 
    .. raw:: html
 
@@ -58,8 +58,8 @@ Download
         Your browser does not support the audio element.
       </audio>
 
-   q32
-   ^^^
+   q32 - 32nd notes
+   ^^^^^^^^^^^^^^^^^^^
 
    .. raw:: html
 
@@ -71,16 +71,16 @@ Download
 Score Preview
 -------------
 
-q16
-^^^
+q16 - 16th notes
+^^^^^^^^^^^^^^^^^^
 
 .. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16-thumbnail.png
    :alt: First page preview of Bird Im-Migration q16
    :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.pdf
    :width: 50%
 
-q32
-^^^
+q32 - 32nd notes
+^^^^^^^^^^^^^^^^^^
 
 .. image:: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32-thumbnail.png
    :alt: First page preview of Bird Im-Migration q32
@@ -98,36 +98,36 @@ The package keeps its source materials inside the package data directory.
 The WAV file is the original recording.
 The partials text file is the SPEAR analysis export that drives the score generation.
 
-Analytical Premise
-------------------
+How We Analyze the Spectrum
+-----------------------------
 
 The analysis code focuses on a bird-like high-frequency band around ``4.5-6.0 kHz``.
 That band is not meant to be a universal description of birdsong.
-It is a practical filter for isolating the recurring chirp-like material in this recording.
+It is a practical filter for isolating the recurring chirp-like material in this particular recording.
 
 The package keeps two layers of interpretation.
 It can infer approximate candidate regions from the partials automatically.
 It also preserves a curated set of bird regions that serve as the score timeline.
 
-The currently curated regions are:
+The curated regions for this recording are:
 
 - ``Early birds``: ``0.6-1.9 s``
 - ``Middle birds``: ``2.8-5.6 s``
 - ``Strong middle/late birds``: ``7.3-9.1 s``
 - ``Late birds``: ``10.8-13.9 s``
 
-Transcription Strategy
-----------------------
+How We Generate the Music
+--------------------------
 
 The package parses the SPEAR text file, filters for bird-like partials, quantizes onset material within each curated region, reduces each rhythmic bin to one or two salient pitches, and groups repeated bins into notated events.
 Because the underlying sound is spectrally complex, the resulting notation sometimes uses small pitch clusters rather than a single line.
 
 The package currently supports at least two useful quantization settings.
 
-- ``q16`` for a 16th-note reduction
-- ``q32`` for a 32nd-note reduction
+- ``q16`` for a 16th-note reduction (more suitable for humans)
+- ``q32`` for a 32nd-note reduction (more suitable for computers/synthesizers)
 
-Those quantization choices appear directly in the generated output stems so that both versions can coexist in the build directory.
+Those quantization choices appear directly in the generated output stems so that both versions can coexist in the build directory:
 
 Implementation
 --------------
