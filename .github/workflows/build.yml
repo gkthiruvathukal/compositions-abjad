@@ -322,7 +322,7 @@ jobs:
       - name: Install thumbnail tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y poppler-utils imagemagick
+          sudo apt-get install -y poppler-utils imagemagick texlive-extra-utils
 
       - name: Create stable quartet aliases
         run: |
@@ -342,10 +342,13 @@ jobs:
             local pdf_path="$1"
             local png_path="$2"
             local base_path="${png_path%.png}"
+            local cropped_pdf="${base_path}-cropped.pdf"
             local temp_path="${base_path}-page1"
 
-            pdftoppm -png -f 1 -singlefile "${pdf_path}" "${temp_path}"
+            pdfcrop "${pdf_path}" "${cropped_pdf}"
+            pdftoppm -png -f 1 -singlefile "${cropped_pdf}" "${temp_path}"
             convert "${temp_path}.png" -resize 50% "${png_path}"
+            rm -f "${cropped_pdf}"
             rm -f "${temp_path}.png"
           }
 
