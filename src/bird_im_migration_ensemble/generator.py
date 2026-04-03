@@ -62,6 +62,7 @@ class MovementConfig:
     tempo_bpm: int
     key_literal: str
     center_midi: int
+    total_measures: int
     phrase_pairs: int
     intro_measures: int
     closing_measures: int
@@ -125,6 +126,7 @@ DEFAULT_MOVEMENTS: tuple[MovementConfig, ...] = (
         tempo_bpm=88,
         key_literal=r"\key d \dorian",
         center_midi=50,
+        total_measures=32,
         phrase_pairs=6,
         intro_measures=2,
         closing_measures=3,
@@ -145,6 +147,7 @@ DEFAULT_MOVEMENTS: tuple[MovementConfig, ...] = (
         tempo_bpm=57,
         key_literal=r"\key b \minor",
         center_midi=47,
+        total_measures=32,
         phrase_pairs=6,
         intro_measures=1,
         closing_measures=3,
@@ -165,6 +168,7 @@ DEFAULT_MOVEMENTS: tuple[MovementConfig, ...] = (
         tempo_bpm=108,
         key_literal=r"\key d \minor",
         center_midi=50,
+        total_measures=32,
         phrase_pairs=7,
         intro_measures=2,
         closing_measures=3,
@@ -434,25 +438,52 @@ def _build_piano_bins(
             )
             continue
 
-        if measure_index % 3 == 0:
-            left_chord = (root, fifth)
-        elif measure_index % 3 == 1:
-            left_chord = (root, octave)
+        if config.number == 2:
+            two_measure_phase = measure_index % 2
+            arpeggio_cycle = (
+                (0, (root,)),
+                (2, (fifth,)),
+                (4, (octave,)),
+                (6, (fifth,)),
+                (8, (root + 12,)),
+                (10, (fifth,)),
+            )
+            shifted_cycle = (
+                (0, (root, fifth)),
+                (2, (octave,)),
+                (4, (fifth,)),
+                (6, (root,)),
+                (8, (fifth, octave)),
+                (10, (fifth,)),
+            )
+            cycle = arpeggio_cycle if two_measure_phase == 0 else shifted_cycle
+            for offset, chord in cycle:
+                _apply_span(
+                    left_bins,
+                    start=measure_start + min(offset, max(0, measure_units - eighth_units)),
+                    duration=eighth_units,
+                    pitches=chord,
+                )
         else:
-            left_chord = (root, fifth, octave)
-        _apply_span(
-            left_bins,
-            start=measure_start,
-            duration=measure_units,
-            pitches=left_chord,
-        )
-        if measure_index % 2 == 1:
+            if measure_index % 3 == 0:
+                left_chord = (root, fifth)
+            elif measure_index % 3 == 1:
+                left_chord = (root, octave)
+            else:
+                left_chord = (root, fifth, octave)
             _apply_span(
                 left_bins,
-                start=measure_start + half_measure,
-                duration=half_measure,
-                pitches=(root, fifth),
+                start=measure_start,
+                duration=measure_units,
+                pitches=left_chord,
             )
+            if measure_index % 2 == 1:
+                _apply_span(
+                    left_bins,
+                    start=measure_start + half_measure,
+                    duration=half_measure,
+                    pitches=(root, fifth),
+                )
 
         shifted_entries = [
             (
@@ -573,7 +604,8 @@ def _build_movement_material(
     seed: int,
 ) -> MovementMaterial:
     measure_units = _measure_units(config.time_signature)
-    total_measures = config.intro_measures + config.closing_measures
+    target_phrase_measures = max(config.total_measures - config.closing_measures, config.intro_measures)
+    total_measures = config.intro_measures
     whistle_bins: list[tuple[int, ...] | None] = []
     trumpet_bins: list[tuple[int, ...] | None] = []
 
@@ -582,14 +614,23 @@ def _build_movement_material(
 
     rng = random.Random(seed + config.seed_offset)
     last_variant: PhraseVariant | None = None
-    for _ in range(config.phrase_pairs):
+    while total_measures < target_phrase_measures:
         call_phrase = rng.choice(phrases)
+        remaining_before_closing = target_phrase_measures - total_measures
+        call_transform = rng.choice(config.call_transforms)
         call_variant = _make_variant(
             call_phrase,
-            rng.choice(config.call_transforms),
+            call_transform,
             measure_units=measure_units,
             phrase_measures=config.phrase_measures,
         )
+        if call_variant.span_measures > remaining_before_closing:
+            call_variant = _make_variant(
+                call_phrase,
+                "identity",
+                measure_units=measure_units,
+                phrase_measures=min(config.phrase_measures, remaining_before_closing),
+            )
         last_variant = call_variant
         call_bins = [
             _map_bin_to_instrument(
@@ -607,6 +648,10 @@ def _build_movement_material(
         trumpet_bins.extend([None] * len(call_bins))
         total_measures += call_variant.span_measures
 
+        remaining_before_closing = target_phrase_measures - total_measures
+        if remaining_before_closing <= 0:
+            break
+
         if rng.random() <= config.call_response_probability:
             response_phrase = rng.choice(phrases)
             response_variant = _make_variant(
@@ -615,6 +660,13 @@ def _build_movement_material(
                 measure_units=measure_units,
                 phrase_measures=config.phrase_measures,
             )
+            if response_variant.span_measures > remaining_before_closing:
+                response_variant = _make_variant(
+                    response_phrase,
+                    "identity",
+                    measure_units=measure_units,
+                    phrase_measures=min(config.phrase_measures, remaining_before_closing),
+                )
             last_variant = response_variant
             response_bins = [
                 _map_bin_to_instrument(
@@ -647,6 +699,7 @@ def _build_movement_material(
     )
     whistle_bins.extend(closing_whistle)
     trumpet_bins.extend(closing_trumpet)
+    total_measures += config.closing_measures
 
     piano_lh_bins, piano_rh_bins = _build_piano_bins(
         config,
@@ -674,7 +727,14 @@ def _build_movement_material(
     for bins in (whistle_bins, trumpet_bins, percussion_bins, piano_lh_bins, piano_rh_bins):
         bins.extend([None] * (max_units - len(bins)))
 
-    measures = max_units // measure_units
+    desired_units = config.total_measures * measure_units
+    for bins in (whistle_bins, trumpet_bins, percussion_bins, piano_lh_bins, piano_rh_bins):
+        if len(bins) < desired_units:
+            bins.extend([None] * (desired_units - len(bins)))
+        elif len(bins) > desired_units:
+            del bins[desired_units:]
+
+    measures = config.total_measures
     parts = (
         InstrumentPart(
             staff_id="violin",

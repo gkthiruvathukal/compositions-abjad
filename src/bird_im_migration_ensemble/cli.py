@@ -96,25 +96,56 @@ def _channels_for_prefixes(midi: mido.MidiFile, prefixes: set[str]) -> set[int]:
     return channels
 
 
-def _write_filtered_midi(midi: mido.MidiFile, channels: set[int], output_path: Path) -> None:
+def _write_filtered_midi(
+    midi: mido.MidiFile,
+    channels: set[int],
+    output_path: Path,
+    *,
+    channel_map: dict[int, int] | None = None,
+    force_program: int | None = None,
+) -> None:
     filtered = mido.MidiFile(type=midi.type, ticks_per_beat=midi.ticks_per_beat)
     for track in midi.tracks:
         new_track = mido.MidiTrack()
         pending_time = 0
+        program_injected = False
         for message in track:
             message_time = pending_time + message.time
             if hasattr(message, "channel") and message.channel not in channels:
                 pending_time = message_time
                 continue
             pending_time = 0
-            new_track.append(message.copy(time=message_time))
+            copied = message.copy(time=message_time)
+            if hasattr(copied, "channel") and channel_map is not None:
+                copied = copied.copy(channel=channel_map.get(copied.channel, copied.channel))
+            if copied.type == "program_change" and force_program is not None:
+                copied = copied.copy(program=force_program)
+                program_injected = True
+            new_track.append(copied)
+            if (
+                force_program is not None
+                and channel_map is not None
+                and not program_injected
+                and hasattr(copied, "channel")
+                and copied.type in {"note_on", "note_off"}
+            ):
+                new_track.insert(
+                    len(new_track) - 1,
+                    mido.Message(
+                        "program_change",
+                        channel=copied.channel,
+                        program=force_program,
+                        time=0,
+                    ),
+                )
+                program_injected = True
         if not new_track or new_track[-1].type != "end_of_track":
             new_track.append(mido.MetaMessage("end_of_track", time=pending_time))
         filtered.tracks.append(new_track)
     filtered.save(output_path)
 
 
-def mix_wavs(input_paths: list[str], output_path: str) -> None:
+def mix_wavs(input_paths: list[str], output_path: str, *, weights: list[float] | None = None) -> None:
     if len(input_paths) == 1:
         source = input_paths[0]
         if source != output_path:
@@ -125,10 +156,26 @@ def mix_wavs(input_paths: list[str], output_path: str) -> None:
     cmd = ["ffmpeg", "-y"]
     for input_path in input_paths:
         cmd.extend(["-i", input_path])
+    filter_complex = None
+    if weights is not None:
+        if len(weights) != len(input_paths):
+            raise ValueError("weights must match input_paths length")
+        stage_names: list[str] = []
+        for index, weight in enumerate(weights):
+            stage = f"a{index}"
+            stage_names.append(f"[{stage}]")
+            cmd_label = f"[{index}:a]volume={weight}[{stage}]"
+            filter_complex = cmd_label if filter_complex is None else f"{filter_complex};{cmd_label}"
+        mix_inputs = "".join(stage_names)
+        filter_complex = (
+            f"{filter_complex};{mix_inputs}amix=inputs={len(input_paths)}:duration=longest:normalize=0"
+        )
+    else:
+        filter_complex = f"amix=inputs={len(input_paths)}:duration=longest:normalize=0"
     cmd.extend(
         [
             "-filter_complex",
-            f"amix=inputs={len(input_paths)}:duration=longest:normalize=0",
+            filter_complex,
             "-c:a",
             "pcm_s16le",
             output_path,
@@ -145,10 +192,25 @@ def mix_wavs(input_paths: list[str], output_path: str) -> None:
 
 
 def _movement_midi_paths(output_dir: str, stem: str) -> list[str]:
+    def sort_key(entry: str) -> tuple[int, str]:
+        if entry == f"{stem}.midi":
+            return (0, entry)
+        prefix = f"{stem}-"
+        suffix = entry[len(prefix):-5]
+        if entry.startswith(prefix) and suffix.isdigit():
+            return (int(suffix) + 1, entry)
+        return (10_000, entry)
+
     midi_files = [
         os.path.join(output_dir, entry)
-        for entry in sorted(os.listdir(output_dir))
-        if entry.startswith(stem) and entry.endswith(".midi")
+        for entry in sorted(
+            (
+                entry
+                for entry in os.listdir(output_dir)
+                if entry.startswith(stem) and entry.endswith(".midi")
+            ),
+            key=sort_key,
+        )
     ]
     return midi_files
 
@@ -161,33 +223,52 @@ def render_layered_wav_for_midi(
     sample_rate: int,
 ) -> None:
     midi = mido.MidiFile(midi_path)
-    piano_channels = _channels_for_prefixes(midi, {"piano_rh", "piano_lh"})
+    piano_rh_channels = _channels_for_prefixes(midi, {"piano_rh"})
+    piano_lh_channels = _channels_for_prefixes(midi, {"piano_lh"})
     ensemble_channels = _channels_for_prefixes(midi, {"violin", "trumpet"})
     percussion_channels = _channels_for_prefixes(midi, {"percussion"})
 
-    if not piano_channels or not ensemble_channels:
+    if not piano_rh_channels or not piano_lh_channels or not ensemble_channels:
         raise ValueError("Could not detect both piano and melodic ensemble MIDI channels for layered rendering.")
 
     with tempfile.TemporaryDirectory() as temp_dir:
-        piano_midi = Path(temp_dir) / "ensemble-piano.midi"
+        piano_rh_midi = Path(temp_dir) / "ensemble-piano-rh.midi"
+        piano_lh_midi = Path(temp_dir) / "ensemble-piano-lh.midi"
         ensemble_midi = Path(temp_dir) / "ensemble-other.midi"
         percussion_midi = Path(temp_dir) / "ensemble-percussion.midi"
-        piano_wav = Path(temp_dir) / "ensemble-piano.wav"
+        piano_rh_wav = Path(temp_dir) / "ensemble-piano-rh.wav"
+        piano_lh_wav = Path(temp_dir) / "ensemble-piano-lh.wav"
         ensemble_wav = Path(temp_dir) / "ensemble-other.wav"
         percussion_wav = Path(temp_dir) / "ensemble-percussion.wav"
 
-        _write_filtered_midi(midi, piano_channels, piano_midi)
+        _write_filtered_midi(
+            midi,
+            piano_rh_channels,
+            piano_rh_midi,
+            channel_map={channel: 0 for channel in piano_rh_channels},
+            force_program=0,
+        )
+        _write_filtered_midi(
+            midi,
+            piano_lh_channels,
+            piano_lh_midi,
+            channel_map={channel: 0 for channel in piano_lh_channels},
+            force_program=0,
+        )
         _write_filtered_midi(midi, ensemble_channels, ensemble_midi)
         if percussion_channels:
             _write_filtered_midi(midi, percussion_channels, percussion_midi)
 
-        render_wav(str(piano_midi), str(piano_wav), piano_soundfont_path, sample_rate)
+        render_wav(str(piano_rh_midi), str(piano_rh_wav), piano_soundfont_path, sample_rate)
+        render_wav(str(piano_lh_midi), str(piano_lh_wav), piano_soundfont_path, sample_rate)
         render_wav(str(ensemble_midi), str(ensemble_wav), ensemble_soundfont_path, sample_rate)
-        layers = [str(piano_wav), str(ensemble_wav)]
+        layers = [str(piano_lh_wav), str(piano_rh_wav), str(ensemble_wav)]
+        weights = [1.8, 1.0, 0.9]
         if percussion_channels:
             render_clap_wav(str(percussion_midi), str(percussion_wav), sample_rate=sample_rate)
             layers.append(str(percussion_wav))
-        mix_wavs(layers, wav_path)
+            weights.append(0.8)
+        mix_wavs(layers, wav_path, weights=weights)
 
 
 def render_full_wav(
@@ -202,22 +283,22 @@ def render_full_wav(
     if not midi_paths:
         raise FileNotFoundError("No MIDI files found to render.")
 
-    with tempfile.TemporaryDirectory() as temp_dir:
-        movement_wavs: list[str] = []
-        for index, midi_path in enumerate(midi_paths, start=1):
-            movement_wav = os.path.join(temp_dir, f"movement-{index}.wav")
-            render_layered_wav_for_midi(
-                midi_path=midi_path,
-                wav_path=movement_wav,
-                piano_soundfont_path=piano_soundfont_path,
-                ensemble_soundfont_path=ensemble_soundfont_path,
-                sample_rate=sample_rate,
-            )
-            movement_wavs.append(movement_wav)
+    movement_wavs: list[str] = []
+    for index, midi_path in enumerate(midi_paths, start=1):
+        movement_wav = os.path.join(output_dir, f"{stem}-mvt{index}.wav")
+        render_layered_wav_for_midi(
+            midi_path=midi_path,
+            wav_path=movement_wav,
+            piano_soundfont_path=piano_soundfont_path,
+            ensemble_soundfont_path=ensemble_soundfont_path,
+            sample_rate=sample_rate,
+        )
+        movement_wavs.append(movement_wav)
 
+    with tempfile.TemporaryDirectory() as temp_dir:
         concat_list = os.path.join(temp_dir, "concat.txt")
         Path(concat_list).write_text(
-            "".join(f"file '{path}'\n" for path in movement_wavs),
+            "".join(f"file '{Path(path).resolve()}'\n" for path in movement_wavs),
             encoding="utf-8",
         )
         output_wav = os.path.join(output_dir, f"{stem}.wav")

@@ -175,7 +175,7 @@ build_bird_im_migration_ensemble() {
     if [ "${HAS_BIRD_IM_MIGRATION_ENSEMBLE}" -eq 1 ]; then
         echo "Building Bird Im-Migration Ensemble outputs into ${OUTPUT_DIR}"
         if [ "${HAS_FLUIDSYNTH}" -eq 1 ] && [ "${HAS_FFMPEG}" -eq 1 ]; then
-            python -m bird_im_migration_ensemble -o "${OUTPUT_DIR}" --pdf --wav
+            python -m bird_im_migration_ensemble -o "${OUTPUT_DIR}" --pdf --midi --wav
         else
             python -m bird_im_migration_ensemble -o "${OUTPUT_DIR}" --pdf --midi
             if [ "${HAS_FLUIDSYNTH}" -eq 0 ]; then
