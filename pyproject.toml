@@ -20,6 +20,7 @@ algorithmic-piano-quartet-no1 = "algorithmic_piano_quartet_no1.cli:main"
 algorithmic-piano-quartet-no2 = "algorithmic_piano_quartet_no2.cli:main"
 algorithmic = "algorithmic.cli:main"
 bird-im-migration = "bird_im_migration.cli:main"
+bird-im-migration-ensemble = "bird_im_migration_ensemble.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

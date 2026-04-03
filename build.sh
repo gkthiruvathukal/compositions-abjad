@@ -16,6 +16,7 @@ HAS_FLUIDSYNTH=0
 HAS_FFMPEG=0
 HAS_ALGORITHMIC=0
 HAS_BIRD_IM_MIGRATION=0
+HAS_BIRD_IM_MIGRATION_ENSEMBLE=0
 HAS_THUMBNAIL_TOOLS=0
 PYTHON_BIN=""
 
@@ -88,6 +89,10 @@ detect_optional_tools() {
 
     if [ -f "${ROOT_DIR}/src/bird_im_migration/__main__.py" ]; then
         HAS_BIRD_IM_MIGRATION=1
+    fi
+
+    if [ -f "${ROOT_DIR}/src/bird_im_migration_ensemble/__main__.py" ]; then
+        HAS_BIRD_IM_MIGRATION_ENSEMBLE=1
     fi
 
     if command -v pdfcrop >/dev/null 2>&1 && command -v pdftoppm >/dev/null 2>&1 && command -v convert >/dev/null 2>&1; then
@@ -163,6 +168,25 @@ build_bird_im_migration() {
         echo "Building Bird Im-Migration outputs into ${OUTPUT_DIR}"
         python -m bird_im_migration -o "${OUTPUT_DIR}" --quantization 16 --pdf --midi
         python -m bird_im_migration -o "${OUTPUT_DIR}" --quantization 32 --pdf --midi
+    fi
+}
+
+build_bird_im_migration_ensemble() {
+    if [ "${HAS_BIRD_IM_MIGRATION_ENSEMBLE}" -eq 1 ]; then
+        echo "Building Bird Im-Migration Ensemble outputs into ${OUTPUT_DIR}"
+        if [ "${HAS_FLUIDSYNTH}" -eq 1 ] && [ "${HAS_FFMPEG}" -eq 1 ]; then
+            python -m bird_im_migration_ensemble -o "${OUTPUT_DIR}" --pdf --wav
+        else
+            python -m bird_im_migration_ensemble -o "${OUTPUT_DIR}" --pdf --midi
+            if [ "${HAS_FLUIDSYNTH}" -eq 0 ]; then
+                echo "Warning: fluidsynth is not installed; skipping Bird Im-Migration Ensemble WAV render." >&2
+            fi
+            if [ "${HAS_FFMPEG}" -eq 0 ]; then
+                echo "Warning: ffmpeg is not installed; skipping Bird Im-Migration Ensemble WAV render." >&2
+                echo "  macOS:  brew install ffmpeg" >&2
+                echo "  Ubuntu: sudo apt install ffmpeg" >&2
+            fi
+        fi
     fi
 }
 
@@ -255,6 +279,7 @@ main() {
     build_piano_quartet_no2
     build_algorithmic
     build_bird_im_migration
+    build_bird_im_migration_ensemble
     render_modus_operandi_wav
     render_bird_im_migration_wavs
     render_bird_im_migration_thumbnails
