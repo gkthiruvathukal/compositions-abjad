@@ -15,6 +15,8 @@ The repository is organized around a small number of score packages, configurati
    │   ├── jazz_rhythm/
    │   ├── algorithmic_piano_quartet_no1/
    │   ├── algorithmic_piano_quartet_no2/
+   │   ├── bird_im_migration/
+   │   ├── bird_im_migration_ensemble/
    │   └── algorithmic/
    ├── build.sh
    ├── midi2wav.sh

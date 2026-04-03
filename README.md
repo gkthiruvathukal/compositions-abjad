@@ -107,6 +107,13 @@ A placeholder package for future algorithmic composition work.
 | LilyPond | [algorithmic.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.ly) |
 | MIDI | [algorithmic.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.midi) |
 
+### Bird Im-Migration Ensemble
+
+A three-movement chamber expansion of the Bird Im-Migration material for violin, trumpet, percussion, and piano.
+
+- Source: `src/bird_im_migration_ensemble/`
+- CLI: `python -m bird_im_migration_ensemble -o build --pdf --wav`
+
 ## Setup
 
 Requirements:
@@ -129,6 +136,8 @@ jazz-rhythms
 algorithmic-piano-quartet-no1
 algorithmic-piano-quartet-no2
 algorithmic
+bird-im-migration
+bird-im-migration-ensemble
 ```
 
 Install LilyPond:
@@ -176,6 +185,8 @@ python -m jazz_rhythm -o build
 python -m algorithmic_piano_quartet_no1 -c configs/algorithmic-piano-quartet-no1.toml -o build
 python -m algorithmic_piano_quartet_no2 -c configs/algorithmic-piano-quartet-no2.toml -o build
 python -m algorithmic -o build
+python -m bird_im_migration -o build --quantization 16 --pdf --midi
+python -m bird_im_migration_ensemble -o build --pdf --wav
 ```
 
 ## Releases and CI
