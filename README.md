@@ -118,6 +118,11 @@ A three-movement chamber expansion of the Bird Im-Migration material for violin,
 - Source: `src/bird_im_migration_ensemble/`
 - CLI: `python -m bird_im_migration_ensemble -o build --pdf --wav`
 
+| Format | Link |
+| --- | --- |
+| PDF | [bird-im-migration-ensemble.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.pdf) |
+| WAV | [bird-im-migration-ensemble.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.wav) |
+
 ## Setup
 
 Requirements:
