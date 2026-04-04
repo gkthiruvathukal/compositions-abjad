@@ -1,4 +1,4 @@
-# Music Composition with Abjad
+# Music Before Composition with Abjad
 
 [![Build And Release](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/build.yml)
 [![Docs](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/docs.yml)
@@ -27,7 +27,7 @@ If this repository or the accompanying report is useful in your own work, please
 ```bibtex
 @article{Thiruvathukal2026,
   author = "George K. Thiruvathukal",
-  title = "{Composition using Python and Abjad/LilyPond: Life Beyond Notation Software}",
+  title = "{Music Before Composition using Python and Abjad/LilyPond: Life Beyond Notation Software}",
   year = "2026",
   month = "3",
   url = "https://figshare.com/articles/online_resource/Composition_using_Python_and_Abjad_LilyPond_Life_Beyond_Notation_Software/31827391",

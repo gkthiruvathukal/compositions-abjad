@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-project = "Composition using Python and Abjad/LilyPond: Life Beyond Notation Software"
+project = "Music Before Composition using Python and Abjad/LilyPond: Life Beyond Notation Software"
 author = "George K. Thiruvathukal"
 copyright = "2026, George K. Thiruvathukal"
 
