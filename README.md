@@ -97,6 +97,20 @@ A placeholder package for future algorithmic composition work.
 | --- | --- |
 | PDF | [algorithmic.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.pdf) |
 
+### Bird Im-Migration
+
+An analysis-driven reduction of curated birdsong partials into short playable score fragments.
+
+- Source: `src/bird_im_migration/`
+- CLI: `python -m bird_im_migration -o build --quantization 16 --pdf --midi`
+
+| Format | Link |
+| --- | --- |
+| PDF (q16) | [bird-im-migration-q16.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.pdf) |
+| WAV (q16) | [bird-im-migration-q16.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.wav) |
+| PDF (q32) | [bird-im-migration-q32.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.pdf) |
+| WAV (q32) | [bird-im-migration-q32.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.wav) |
+
 ### Bird Im-Migration Ensemble
 
 A three-movement chamber expansion of the Bird Im-Migration material for violin, trumpet, percussion, and piano.

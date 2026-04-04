@@ -14,6 +14,8 @@ They differ mainly in how the musical material is created.
 ``modus_operandi_abjad`` and parts of ``jazz_rhythm`` are more direct.
 The quartet packages are more explicitly generative.
 They load configuration, turn it into generation rules, create event streams on a quantized grid, and then convert those events into notation.
+The bird packages add a third path.
+``bird_im_migration`` derives material from curated spectral data, while ``bird_im_migration_ensemble`` takes those extracted phrases and recombines them with transformations and instrumental assignment.
 
 Reproducibility matters more in the quartet packages than in the fixed-score packages.
 The quartet generators expose a random seed through configuration.
@@ -24,6 +26,7 @@ The quartet audio path is a good example of the pipeline becoming more specializ
 A single piano SoundFont is not enough for a quartet, and a single orchestral SoundFont does not give the best piano result.
 The system therefore renders the piano layer and the string layer separately and combines them afterward.
 The CLI is still simple from the outside, but the internal render path is more careful.
+The ensemble bird piece pushes this a bit further by separating piano hands, melodic ensemble, and percussion into different rendering layers before recombination.
 
 The end of the main quartet CLI shows this in two steps.
 First, it decides which outputs LilyPond needs to compile:

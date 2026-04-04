@@ -9,7 +9,9 @@ The main value of the repository is not only that it contains several scores.
 It is that those scores are connected to explicit generation logic, rendering choices, and automated build paths.
 That makes the project useful for composition, documentation, and further research.
 
-The quartets are the best example of this combined role.
+The quartets are one strong example of this combined role.
 No. 1 preserves a stable proof of concept.
 No. 2 provides a branch for active musical and technical change.
 Together they show how a composition system can grow without losing its earlier results.
+The bird pieces show a related idea from a different angle.
+``bird_im_migration`` keeps close contact with analysis-derived source material, while ``bird_im_migration_ensemble`` shows how that same material can support a more independent chamber composition without leaving the shared build and documentation pipeline.

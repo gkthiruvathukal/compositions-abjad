@@ -18,6 +18,8 @@ For the quartet work, the render path is more involved because the best availabl
 The system uses Salamander Grand Piano for the piano part and Aegean Symphonic Orchestra [#aegean]_ for violin, viola, and cello.
 The quartet system therefore renders piano and strings separately and combines the results with ``ffmpeg``.
 This gives better output than forcing all instruments through a single SoundFont, and it makes the generated WAV output sound closer to a plausible performance.
+The newer bird-related work extends this idea further.
+``bird_im_migration`` begins with spectral analysis data rather than only code-defined musical objects, and ``bird_im_migration_ensemble`` uses layered rendering so piano, melodic instruments, and percussion can be treated differently in the final audio path.
 
 The broader tooling choice is pragmatic as opposed to academic:
 
