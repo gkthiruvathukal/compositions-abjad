@@ -29,10 +29,6 @@ Download
      - Link
    * - PDF
      - `modus-operandi-abjad.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.pdf>`_
-   * - LilyPond
-     - `modus-operandi-abjad.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.ly>`_
-   * - MIDI
-     - `modus-operandi-abjad.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.midi>`_
    * - WAV
      - `modus-operandi-abjad.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.wav>`_
 

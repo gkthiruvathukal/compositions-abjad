@@ -22,23 +22,11 @@ Download
      - PDF
      - `bird-im-migration-q16.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.pdf>`_
    * - q16
-     - LilyPond
-     - `bird-im-migration-q16.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.ly>`_
-   * - q16
-     - MIDI
-     - `bird-im-migration-q16.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.midi>`_
-   * - q16
      - WAV
      - `bird-im-migration-q16.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.wav>`_
    * - q32
      - PDF
      - `bird-im-migration-q32.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.pdf>`_
-   * - q32
-     - LilyPond
-     - `bird-im-migration-q32.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.ly>`_
-   * - q32
-     - MIDI
-     - `bird-im-migration-q32.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.midi>`_
    * - q32
      - WAV
      - `bird-im-migration-q32.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.wav>`_

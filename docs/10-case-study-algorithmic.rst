@@ -20,10 +20,6 @@ Download
      - Link
    * - PDF
      - `algorithmic.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.pdf>`_
-   * - LilyPond
-     - `algorithmic.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.ly>`_
-   * - MIDI
-     - `algorithmic.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.midi>`_
    * - WAV
      - Not published for this score
 

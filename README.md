@@ -46,8 +46,6 @@ A three-movement minimalist solo piano work in F Dorian, F Phrygian, and F Lydia
 | Format | Link |
 | --- | --- |
 | PDF | [modus-operandi-abjad.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.pdf) |
-| LilyPond | [modus-operandi-abjad.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.ly) |
-| MIDI | [modus-operandi-abjad.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.midi) |
 | WAV | [modus-operandi-abjad.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.wav) |
 
 ### Jazz Rhythmic Patterns
@@ -60,8 +58,6 @@ A small library of generated jazz comping rhythms rendered as score, LilyPond, M
 | Format | Link |
 | --- | --- |
 | PDF | [jazz-rhythms.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf) |
-| LilyPond | [jazz-rhythms.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.ly) |
-| MIDI | [jazz-rhythms.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.midi) |
 | WAV | [jazz-rhythms.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.wav) |
 
 ### Algo Rhythms Quartet No. 1
@@ -75,8 +71,6 @@ A generated tonal piano quartet for piano, violin, viola, and cello. This is the
 | Format | Link |
 | --- | --- |
 | PDF | [algo-rhythms-quartet-no-1.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.pdf) |
-| LilyPond | [algo-rhythms-quartet-no-1.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.ly) |
-| MIDI | [algo-rhythms-quartet-no-1.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.midi) |
 | WAV | [algo-rhythms-quartet-no-1.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav) |
 
 ### Algo Rhythms Quartet No. 2
@@ -90,8 +84,6 @@ A separate exploratory branch of the quartet work. It starts from No. 1 but is a
 | Format | Link |
 | --- | --- |
 | PDF | [algo-rhythms-quartet-no-2.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.pdf) |
-| LilyPond | [algo-rhythms-quartet-no-2.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.ly) |
-| MIDI | [algo-rhythms-quartet-no-2.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.midi) |
 | WAV | [algo-rhythms-quartet-no-2.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.wav) |
 
 ### Algorithmic
@@ -104,8 +96,6 @@ A placeholder package for future algorithmic composition work.
 | Format | Link |
 | --- | --- |
 | PDF | [algorithmic.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.pdf) |
-| LilyPond | [algorithmic.ly](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.ly) |
-| MIDI | [algorithmic.midi](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.midi) |
 
 ### Bird Im-Migration Ensemble
 

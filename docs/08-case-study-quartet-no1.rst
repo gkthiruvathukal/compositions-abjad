@@ -52,10 +52,6 @@ Download
      - Link
    * - PDF
      - `algo-rhythms-quartet-no-1.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.pdf>`_
-   * - LilyPond
-     - `algo-rhythms-quartet-no-1.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.ly>`_
-   * - MIDI
-     - `algo-rhythms-quartet-no-1.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.midi>`_
    * - WAV
      - `algo-rhythms-quartet-no-1.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav>`_
 

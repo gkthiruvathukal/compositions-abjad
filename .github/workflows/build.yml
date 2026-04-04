@@ -373,7 +373,7 @@ jobs:
       - name: Create stable quartet aliases
         run: |
           set -euo pipefail
-          for ext in pdf midi ly wav; do
+          for ext in pdf wav; do
             no1=(release/piano-quartet-no1/algo-rhythms-quartet-no-1*.${ext})
             no2=(release/piano-quartet-no2/algo-rhythms-quartet-no-2*.${ext})
             cp "${no1[0]}" "release/piano-quartet-no1/algo-rhythms-quartet-no-1.${ext}"
@@ -433,42 +433,26 @@ jobs:
             --generate-notes \
             release/docs/composition-report.pdf \
             release/modus-operandi-abjad/modus-operandi-abjad.pdf \
-            release/modus-operandi-abjad/modus-operandi-abjad.midi \
-            release/modus-operandi-abjad/modus-operandi-abjad.ly \
             release/modus-operandi-abjad/modus-operandi-abjad.wav \
             release/modus-operandi-abjad/modus-operandi-abjad-thumbnail.png \
             release/jazz-rhythms/jazz-rhythms.pdf \
-            release/jazz-rhythms/jazz-rhythms.midi \
-            release/jazz-rhythms/jazz-rhythms.ly \
             release/jazz-rhythms/jazz-rhythms.wav \
             release/jazz-rhythms/jazz-rhythms-thumbnail.png \
             release/piano-quartet-no1/algo-rhythms-quartet-no-1.pdf \
-            release/piano-quartet-no1/algo-rhythms-quartet-no-1.midi \
-            release/piano-quartet-no1/algo-rhythms-quartet-no-1.ly \
             release/piano-quartet-no1/algo-rhythms-quartet-no-1.wav \
             release/piano-quartet-no1/algo-rhythms-quartet-no-1-thumbnail.png \
             release/piano-quartet-no2/algo-rhythms-quartet-no-2.pdf \
-            release/piano-quartet-no2/algo-rhythms-quartet-no-2.midi \
-            release/piano-quartet-no2/algo-rhythms-quartet-no-2.ly \
             release/piano-quartet-no2/algo-rhythms-quartet-no-2.wav \
             release/piano-quartet-no2/algo-rhythms-quartet-no-2-thumbnail.png \
             release/algorithmic/algorithmic.pdf \
-            release/algorithmic/algorithmic.midi \
-            release/algorithmic/algorithmic.ly \
             release/algorithmic/algorithmic-thumbnail.png \
             release/bird-im-migration/bird-im-migration-q16.pdf \
-            release/bird-im-migration/bird-im-migration-q16.midi \
-            release/bird-im-migration/bird-im-migration-q16.ly \
             release/bird-im-migration/bird-im-migration-q16.wav \
             release/bird-im-migration/bird-im-migration-q16-thumbnail.png \
             release/bird-im-migration/bird-im-migration-q32.pdf \
-            release/bird-im-migration/bird-im-migration-q32.midi \
-            release/bird-im-migration/bird-im-migration-q32.ly \
             release/bird-im-migration/bird-im-migration-q32.wav \
             release/bird-im-migration/bird-im-migration-q32-thumbnail.png \
             release/bird-im-migration-ensemble/bird-im-migration-ensemble.pdf \
-            release/bird-im-migration-ensemble/bird-im-migration-ensemble.midi \
-            release/bird-im-migration-ensemble/bird-im-migration-ensemble.ly \
             release/bird-im-migration-ensemble/bird-im-migration-ensemble.wav \
             release/bird-im-migration-ensemble/bird-im-migration-ensemble-mvt1.wav \
             release/bird-im-migration-ensemble/bird-im-migration-ensemble-mvt2.wav \

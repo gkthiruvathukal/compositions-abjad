@@ -22,10 +22,6 @@ Download
      - Link
    * - PDF
      - `jazz-rhythms.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf>`_
-   * - LilyPond
-     - `jazz-rhythms.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.ly>`_
-   * - MIDI
-     - `jazz-rhythms.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.midi>`_
    * - WAV
      - `jazz-rhythms.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.wav>`_
 

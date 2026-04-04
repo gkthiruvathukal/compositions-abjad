@@ -22,10 +22,6 @@ Download
      - Link
    * - PDF
      - `bird-im-migration-ensemble.pdf <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.pdf>`_
-   * - LilyPond
-     - `bird-im-migration-ensemble.ly <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.ly>`_
-   * - MIDI
-     - `bird-im-migration-ensemble.midi <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.midi>`_
    * - WAV
      - `bird-im-migration-ensemble.wav <https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.wav>`_
    * - Movement I WAV
