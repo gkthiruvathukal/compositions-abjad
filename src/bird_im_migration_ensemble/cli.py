@@ -215,6 +215,7 @@ def _movement_midi_paths(output_dir: str, stem: str) -> list[str]:
     return midi_files
 
 
+# [docs:layered-render:start]
 def render_layered_wav_for_midi(
     midi_path: str,
     wav_path: str,
@@ -269,8 +270,10 @@ def render_layered_wav_for_midi(
             layers.append(str(percussion_wav))
             weights.append(0.8)
         mix_wavs(layers, wav_path, weights=weights)
+# [docs:layered-render:end]
 
 
+# [docs:movement-render-order:start]
 def render_full_wav(
     *,
     output_dir: str,
@@ -323,6 +326,7 @@ def render_full_wav(
         if result.stderr:
             print(result.stderr, end="")
         print(f"Wrote {output_wav}")
+# [docs:movement-render-order:end]
 
 
 def parse_args(argv=None):

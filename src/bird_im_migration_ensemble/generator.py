@@ -110,6 +110,7 @@ class EnsemblePiece:
     generation_note_lines: tuple[str, ...]
 
 
+# [docs:movement-configs:start]
 DEFAULT_SOURCE = BirdSource(
     sample_id="parkbirds",
     partials_path=str(DEFAULT_PARTIALS_PATH),
@@ -197,6 +198,7 @@ PIANO_PATTERNS: dict[str, tuple[int, ...]] = {
     "anticipation": (14,),
     "syncopated": (2, 6),
 }
+# [docs:movement-configs:end]
 
 
 def _measure_units(time_signature: tuple[int, int]) -> int:
@@ -243,6 +245,7 @@ def _repeat_bins(
     return _resample_bins(repeated, target_units=target_units)
 
 
+# [docs:phrase-transforms:start]
 def _make_variant(
     phrase: Phrase,
     transform_name: str,
@@ -297,6 +300,7 @@ def build_phrase_library(
                 )
             )
     return tuple(phrases)
+# [docs:phrase-transforms:end]
 
 
 def _fit_pitch_to_range(midi_pitch: int, low: int, high: int) -> int:
@@ -373,6 +377,7 @@ def _apply_span(
         bins[index] = _merge_pitch_sets(bins[index], pitches)
 
 
+# [docs:piano-layers:start]
 def _build_piano_bins(
     config: MovementConfig,
     *,
@@ -501,6 +506,7 @@ def _build_piano_bins(
                 pitches=chord,
             )
     return left_bins, right_bins
+# [docs:piano-layers:end]
 
 
 def _build_closing_phrase_bins(
@@ -559,6 +565,7 @@ def _scaled_pattern_hits(pattern_name: str, cycle_units: int) -> tuple[int, ...]
     return tuple(sorted(scaled))
 
 
+# [docs:percussion-layer:start]
 def _build_percussion_bins_from_pattern(
     *,
     whistle_bins: list[tuple[int, ...] | None],
@@ -595,6 +602,7 @@ def _build_percussion_bins_from_pattern(
             bins.append(None)
         previous_active = active
     return bins
+# [docs:percussion-layer:end]
 
 
 def _build_movement_material(
@@ -614,6 +622,7 @@ def _build_movement_material(
 
     rng = random.Random(seed + config.seed_offset)
     last_variant: PhraseVariant | None = None
+    # [docs:bird-call-response:start]
     while total_measures < target_phrase_measures:
         call_phrase = rng.choice(phrases)
         remaining_before_closing = target_phrase_measures - total_measures
@@ -683,6 +692,7 @@ def _build_movement_material(
             whistle_bins.extend([None] * len(response_bins))
             trumpet_bins.extend(response_bins)
             total_measures += response_variant.span_measures
+    # [docs:bird-call-response:end]
 
     if last_variant is None:
         last_variant = _make_variant(
@@ -734,6 +744,7 @@ def _build_movement_material(
         elif len(bins) > desired_units:
             del bins[desired_units:]
 
+    # [docs:part-assembly:start]
     measures = config.total_measures
     parts = (
         InstrumentPart(
@@ -777,6 +788,7 @@ def _build_movement_material(
             events=tuple(_phrase_bins_to_events(piano_lh_bins)),
         ),
     )
+    # [docs:part-assembly:end]
     return MovementMaterial(
         config=config,
         measure_units=measure_units,

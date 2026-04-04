@@ -101,7 +101,8 @@ The core data structures and the default movement plans live together in the gen
 
 .. literalinclude:: ../src/bird_im_migration_ensemble/generator.py
    :language: python
-   :lines: 33-199
+   :start-after: [docs:movement-configs:start]
+   :end-before: [docs:movement-configs:end]
    :caption: Phrase and movement data classes plus the default three-movement plan.
 
 In practice this means the composition can be described at the level of phrase behavior rather than note-by-note editing.
@@ -118,7 +119,8 @@ From there, the package creates variants using a deliberately small set of opera
 
 .. literalinclude:: ../src/bird_im_migration_ensemble/generator.py
    :language: python
-   :lines: 246-299
+   :start-after: [docs:phrase-transforms:start]
+   :end-before: [docs:phrase-transforms:end]
    :caption: Converting curated regions into phrase objects and creating transformed phrase variants.
 
 This is the central compositional decision in the package.
@@ -131,13 +133,23 @@ How the Bird Lines Are Created
 ------------------------------
 
 The violin and trumpet lines are built from the same pool of phrase variants.
+The first excerpt shows the call-and-response loop itself.
 The generator chooses a phrase for the call, maps it into the violin register, and then optionally answers it with a transformed phrase in the trumpet register.
 The mapping is intentionally asymmetric: the higher line prefers the upper note in each bin, while the trumpet response sits lower and answers rather than duplicates.
 
 .. literalinclude:: ../src/bird_im_migration_ensemble/generator.py
    :language: python
-   :lines: 600-785
-   :caption: Movement construction, including call-and-response writing for violin and trumpet.
+   :start-after: [docs:bird-call-response:start]
+   :end-before: [docs:bird-call-response:end]
+   :caption: Call-and-response writing for violin and trumpet.
+
+The second excerpt shows how those generated bins become concrete instrument parts at the end of the movement build:
+
+.. literalinclude:: ../src/bird_im_migration_ensemble/generator.py
+   :language: python
+   :start-after: [docs:part-assembly:start]
+   :end-before: [docs:part-assembly:end]
+   :caption: Assembling the movement parts after the bins have been generated.
 
 This is where the alternating bird effect comes from.
 One line states a phrase and the other line responds in the next span.
@@ -157,7 +169,8 @@ Movement II is handled differently again, with a two-measure arpeggiated left-ha
 
 .. literalinclude:: ../src/bird_im_migration_ensemble/generator.py
    :language: python
-   :lines: 376-503
+   :start-after: [docs:piano-layers:start]
+   :end-before: [docs:piano-layers:end]
    :caption: Building the piano layers, with sustained drone behavior, right-hand patterns, and the nocturne arpeggiation.
 
 The percussion line is also environmental rather than imitative.
@@ -167,7 +180,8 @@ That gives the texture a sense of place: not literal forest noise, but a pattern
 
 .. literalinclude:: ../src/bird_im_migration_ensemble/generator.py
    :language: python
-   :lines: 550-597
+   :start-after: [docs:percussion-layer:start]
+   :end-before: [docs:percussion-layer:end]
    :caption: Turning named rhythmic patterns into a light environmental percussion line.
 
 This added material is why the piece is not simply a spectral reduction with accompaniment.
@@ -178,13 +192,22 @@ How the Piece Is Rendered
 
 The package also treats rendering as part of the composition system.
 Notation is produced in LilyPond and then the audio path separates the ensemble into layers before synthesis.
-The current render path uses Salamander for the two piano hands, Aegean for the melodic ensemble, and a clap-style render for percussion.
-Each movement is rendered separately and then concatenated into a full listening file.
+The first excerpt shows the layered render for one movement.
+It uses Salamander for the two piano hands, Aegean for the melodic ensemble, and a clap-style render for percussion.
 
 .. literalinclude:: ../src/bird_im_migration_ensemble/cli.py
    :language: python
-   :lines: 194-325
-   :caption: Movement-aware layered WAV rendering for Bird Im-Migration Ensemble.
+   :start-after: [docs:layered-render:start]
+   :end-before: [docs:layered-render:end]
+   :caption: Layered WAV rendering for one movement of Bird Im-Migration Ensemble.
+
+The second excerpt shows how the movement MIDI files are ordered and concatenated into the full listening file:
+
+.. literalinclude:: ../src/bird_im_migration_ensemble/cli.py
+   :language: python
+   :start-after: [docs:movement-render-order:start]
+   :end-before: [docs:movement-render-order:end]
+   :caption: Ordering the movement renders and concatenating them into the full WAV.
 
 This layered render path exists for musical reasons as much as technical ones.
 It keeps the piano drone audible, gives the treble material its own timbral space, and allows the release process to expose both the full piece and the individual movement WAVs.
