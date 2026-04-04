@@ -3,6 +3,10 @@ Composition using Python and Abjad/LilyPond: Life Beyond Notation Software
 
 .. only:: html
 
+   .. image:: https://img.shields.io/github/v/release/gkthiruvathukal/compositions-abjad
+      :target: https://github.com/gkthiruvathukal/compositions-abjad/releases/latest
+      :alt: Latest release
+
    .. image:: https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/build.yml/badge.svg?branch=main
       :target: https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/build.yml
       :alt: Build And Release status
@@ -10,6 +14,8 @@ Composition using Python and Abjad/LilyPond: Life Beyond Notation Software
    .. image:: https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/docs.yml/badge.svg?branch=main
       :target: https://github.com/gkthiruvathukal/compositions-abjad/actions/workflows/docs.yml
       :alt: Docs status
+
+   Current version: |current_release|
 
 .. warning::
    This site is about work in progress.

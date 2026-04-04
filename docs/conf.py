@@ -30,6 +30,10 @@ def _detect_release() -> str:
 release = _detect_release()
 version = release
 
+rst_epilog = f"""
+.. |current_release| replace:: {release}
+"""
+
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
