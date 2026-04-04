@@ -39,6 +39,10 @@ If this repository or the accompanying report is useful in your own work, please
 
 ### Modus Operandi for Piano
 
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad-thumbnail.png" alt="Modus Operandi thumbnail" width="320">
+</a>
+
 A three-movement minimalist solo piano work in F Dorian, F Phrygian, and F Lydian.
 
 - Source: `src/modus_operandi_abjad/`
@@ -49,11 +53,11 @@ A three-movement minimalist solo piano work in F Dorian, F Phrygian, and F Lydia
 | PDF | [modus-operandi-abjad.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.pdf) |
 | WAV | [modus-operandi-abjad.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.wav) |
 
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/modus-operandi-abjad-thumbnail.png" alt="Modus Operandi thumbnail" width="320">
-</a>
-
 ### Jazz Rhythmic Patterns
+
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms-thumbnail.png" alt="Jazz Rhythms thumbnail" width="320">
+</a>
 
 A small library of generated jazz comping rhythms rendered as score, LilyPond, MIDI, and clap-based WAV.
 
@@ -65,11 +69,11 @@ A small library of generated jazz comping rhythms rendered as score, LilyPond, M
 | PDF | [jazz-rhythms.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf) |
 | WAV | [jazz-rhythms.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.wav) |
 
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/jazz-rhythms-thumbnail.png" alt="Jazz Rhythms thumbnail" width="320">
-</a>
-
 ### Algo Rhythms Quartet No. 1
+
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1-thumbnail.png" alt="Algo Rhythms Quartet No. 1 thumbnail" width="320">
+</a>
 
 A generated tonal piano quartet for piano, violin, viola, and cello. This is the first proof-of-concept score in the larger quartet line.
 
@@ -82,11 +86,11 @@ A generated tonal piano quartet for piano, violin, viola, and cello. This is the
 | PDF | [algo-rhythms-quartet-no-1.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.pdf) |
 | WAV | [algo-rhythms-quartet-no-1.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.wav) |
 
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-1-thumbnail.png" alt="Algo Rhythms Quartet No. 1 thumbnail" width="320">
-</a>
-
 ### Algo Rhythms Quartet No. 2
+
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2-thumbnail.png" alt="Algo Rhythms Quartet No. 2 thumbnail" width="320">
+</a>
 
 A separate exploratory branch of the quartet work. It starts from No. 1 but is allowed to evolve independently.
 
@@ -99,11 +103,11 @@ A separate exploratory branch of the quartet work. It starts from No. 1 but is a
 | PDF | [algo-rhythms-quartet-no-2.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.pdf) |
 | WAV | [algo-rhythms-quartet-no-2.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.wav) |
 
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algo-rhythms-quartet-no-2-thumbnail.png" alt="Algo Rhythms Quartet No. 2 thumbnail" width="320">
-</a>
-
 ### Algorithmic
+
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-thumbnail.png" alt="Algorithmic thumbnail" width="320">
+</a>
 
 A placeholder package for future algorithmic composition work.
 
@@ -114,11 +118,14 @@ A placeholder package for future algorithmic composition work.
 | --- | --- |
 | PDF | [algorithmic.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.pdf) |
 
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/algorithmic-thumbnail.png" alt="Algorithmic thumbnail" width="320">
-</a>
-
 ### Bird Im-Migration
+
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16-thumbnail.png" alt="Bird Im-Migration q16 thumbnail" width="320">
+</a>
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32-thumbnail.png" alt="Bird Im-Migration q32 thumbnail" width="320">
+</a>
 
 An analysis-driven reduction of curated birdsong partials into short playable score fragments.
 
@@ -132,14 +139,11 @@ An analysis-driven reduction of curated birdsong partials into short playable sc
 | PDF (q32) | [bird-im-migration-q32.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.pdf) |
 | WAV (q32) | [bird-im-migration-q32.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.wav) |
 
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q16-thumbnail.png" alt="Bird Im-Migration q16 thumbnail" width="320">
-</a>
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-q32-thumbnail.png" alt="Bird Im-Migration q32 thumbnail" width="320">
-</a>
-
 ### Bird Im-Migration Ensemble
+
+<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.pdf">
+  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble-thumbnail.png" alt="Bird Im-Migration Ensemble thumbnail" width="320">
+</a>
 
 A three-movement chamber expansion of the Bird Im-Migration material for violin, trumpet, percussion, and piano.
 
@@ -150,10 +154,6 @@ A three-movement chamber expansion of the Bird Im-Migration material for violin,
 | --- | --- |
 | PDF | [bird-im-migration-ensemble.pdf](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.pdf) |
 | WAV | [bird-im-migration-ensemble.wav](https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.wav) |
-
-<a href="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble.pdf">
-  <img src="https://github.com/gkthiruvathukal/compositions-abjad/releases/latest/download/bird-im-migration-ensemble-thumbnail.png" alt="Bird Im-Migration Ensemble thumbnail" width="320">
-</a>
 
 ## Setup
 
